@@ -5,8 +5,11 @@ using UnityEngine;
 public class AbilitySlotter : MonoBehaviour
 {
     // Start is called before the first frame update
+    AbilitySlots abilities;
     void Start()
     {
+        abilities = GetComponent<AbilitySlots>();
+        abilities.SetAbility1(1);
         
     }
 

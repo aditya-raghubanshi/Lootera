@@ -129,7 +129,7 @@ AnimatorStateTransition:
   m_PrefabAsset: {fileID: 0}
   m_Name: 
   m_Conditions:
-  - m_ConditionMode: 4
+  - m_ConditionMode: 3
     m_ConditionEvent: HealingShout
     m_EventTreshold: 0
   m_DstStateMachine: {fileID: 0}
@@ -396,7 +396,7 @@ AnimatorState:
   m_MirrorParameterActive: 0
   m_CycleOffsetParameterActive: 0
   m_TimeParameterActive: 0
-  m_Motion: {fileID: 7400000, guid: 16ec6d7e8674de542bae3c99b2e13a7e, type: 3}
+  m_Motion: {fileID: 7400000, guid: 61f5f521e1267f149ba0d54e7fda77c7, type: 3}
   m_Tag: 
   m_SpeedParameter: 
   m_MirrorParameter: 
