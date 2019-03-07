@@ -11,7 +11,8 @@ public class SwordAttack : MonoBehaviour
     void OnTriggerEnter(Collider col)
     {
         AttackButton button = FindObjectOfType<AttackButton>();
-        skeleton = FindObjectOfType<Dungeon_Monster_Controller>();
+        //skeleton = FindObjectOfType<Dungeon_Monster_Controller>();
+        skeleton = col.gameObject.GetComponent<Dungeon_Monster_Controller>();
         if(button.pressed == true)
         {
             skeleton.Damage(damage);

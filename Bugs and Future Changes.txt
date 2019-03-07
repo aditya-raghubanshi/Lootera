@@ -1,0 +1,2 @@
+Enemy:
+1.	Enemy hit should not be on animation triggers

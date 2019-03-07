@@ -18,11 +18,11 @@ public class AttackButton : MonoBehaviour
         animate.SetFloat("Attack", 1f);
         pressed = true;
         movement.movSpeed = 0f;
-        StartCoroutine(ExecuteAfterTime(0.5f));
+        StartCoroutine(ExecuteAfterTime(0.5f, movement));
 
     }
 
-    IEnumerator ExecuteAfterTime(float sec)
+    IEnumerator ExecuteAfterTime(float sec, Movement movement)
     {
         yield return new WaitForSeconds(sec);
         animate.SetFloat("Attack", -1f);
