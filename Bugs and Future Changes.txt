@@ -1,2 +1,6 @@
 Enemy:
 1.	Enemy hit should not be on animation triggers
+
+
+Player:
+1. Player moves forward when joystick moved a little( less than sens)

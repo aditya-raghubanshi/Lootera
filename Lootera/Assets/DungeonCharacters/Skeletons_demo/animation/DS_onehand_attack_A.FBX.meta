@@ -114,7 +114,8 @@ ModelImporter:
       - time: 0.30563
         functionName: DamageEvent
         data: 
-        objectReferenceParameter: {instanceID: 0}
+        objectReferenceParameter: {fileID: 11500000, guid: df76f50fd9997094ba7633171858c3ff,
+          type: 3}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0

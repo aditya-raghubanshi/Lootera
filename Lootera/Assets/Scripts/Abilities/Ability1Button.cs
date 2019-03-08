@@ -15,7 +15,7 @@ public class Ability1Button : MonoBehaviour
         slots = FindObjectOfType<AbilitySlots>();
         ability1 = slots.GetAbility1();
         button = GetComponent<Button>();
-
+        Debug.Log(ability1);
 
         switch (ability1)
         {
@@ -23,6 +23,7 @@ public class Ability1Button : MonoBehaviour
                 button.GetComponent<Image>().sprite = healingShout;
                 break;
         }
+        // Add more cases as we add new Abilities
     }
 
     

@@ -10,9 +10,10 @@ public class HealingShout : MonoBehaviour
     private PlayerMana mana;
     private GameObject player;
     private Animator animate;
-    // Start is called before the first frame update
+    private Movement mov;
+    
 
-    public void heal()
+    public void Heal()
     {
         
         if (mana.Getmana() < manaUse)
@@ -24,6 +25,7 @@ public class HealingShout : MonoBehaviour
         mana = FindObjectOfType<PlayerMana>();
         player = GameObject.Find("Player");
         animate = player.GetComponent<Animator>();
+        
         health.Heal(healAmount);
         mana.Damage(manaUse);
     }
