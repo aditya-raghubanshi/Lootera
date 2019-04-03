@@ -15,7 +15,7 @@ public class AbilitySlots : MonoBehaviour
 
     public void SetAbility2(int i)
     {
-        ability3 = i;
+        ability2 = i;
     }
 
     public void SetAbility3(int i)

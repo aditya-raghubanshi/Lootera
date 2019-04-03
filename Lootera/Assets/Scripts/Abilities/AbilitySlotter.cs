@@ -10,6 +10,7 @@ public class AbilitySlotter : MonoBehaviour
     {
         abilities = GetComponent<AbilitySlots>();
         abilities.SetAbility1(1);
+        abilities.SetAbility2(2);
         
     }
 

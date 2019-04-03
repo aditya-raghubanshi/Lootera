@@ -5,6 +5,10 @@ using UnityEngine;
 public class Abilities : MonoBehaviour
 {
     float doHealingShout;
+    float doShieldBash;
+    float closeRadius = 10f;
+    float shieldBashDamage = 30f;
+    float shieldBashCost = 70f;
     private PlayerHealth health;
     private PlayerMana mana;
     private GameObject player;
@@ -35,6 +39,8 @@ public class Abilities : MonoBehaviour
 
         animate.SetFloat("HealingShout", doHealingShout);
         doHealingShout = 0f;
+        animate.SetFloat("ShieldBash", doShieldBash);
+        doShieldBash = 0f;
 
     }
 
@@ -44,6 +50,9 @@ public class Abilities : MonoBehaviour
         {
             case 1:
                 HealingShout();
+                break;
+            case 2:
+                ShieldBash();
                 break;
         }
     }
@@ -55,6 +64,9 @@ public class Abilities : MonoBehaviour
             case 1:
                 HealingShout();
                 break;
+            case 2:
+                ShieldBash();
+                break;
         }
     }
 
@@ -64,6 +76,9 @@ public class Abilities : MonoBehaviour
         {
             case 1:
                 HealingShout();
+                break;
+            case 2:
+                ShieldBash();
                 break;
         }
     }
@@ -85,6 +100,37 @@ public class Abilities : MonoBehaviour
             
             health.Heal(30f);
             mana.Damage(10f);
+        }
+    }
+
+    void ShieldBash()
+    {
+        if (mana.Getmana() < shieldBashCost)
+        {
+            //Not Enough Mana
+        }
+        else
+        {
+
+            doShieldBash = 1f;
+            Collider[] colliders = Physics.OverlapSphere(player.transform.transform.position, closeRadius);
+            foreach (Collider nearbyObject in colliders)
+            {
+                Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
+                if (rb != null)
+                {
+                    rb.AddExplosionForce(5000f, player.transform.transform.position, closeRadius);
+
+                }
+                Dungeon_Monster_Controller monster = nearbyObject.GetComponent<Dungeon_Monster_Controller>();
+                if (monster != null)
+                {
+                    monster.Damage(shieldBashDamage);
+                    mana.Damage(shieldBashCost);
+                    print(monster.getHealth());
+                }
+
+            }
         }
     }
 

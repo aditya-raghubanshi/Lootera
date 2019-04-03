@@ -9,6 +9,7 @@ public class Ability1Button : MonoBehaviour
     AbilitySlots slots;
     int ability1;
     public Sprite healingShout;
+    public Sprite shieldBash;
     Button button;
     void Start()
     {
@@ -21,6 +22,9 @@ public class Ability1Button : MonoBehaviour
         {
             case 1:
                 button.GetComponent<Image>().sprite = healingShout;
+                break;
+            case 2:
+                button.GetComponent<Image>().sprite = shieldBash;
                 break;
         }
         // Add more cases as we add new Abilities
