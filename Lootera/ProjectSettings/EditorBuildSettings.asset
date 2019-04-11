@@ -8,9 +8,12 @@ EditorBuildSettings:
   - enabled: 0
     path: 
     guid: 00000000000000000000000000000000
-  - enabled: 1
-    path: Assets/Scenes/MainMenuUI.unity
+  - enabled: 0
+    path: 
     guid: 368ea002c5ddf44eeb3f5b81bc43afaa
+  - enabled: 1
+    path: Assets/MainMenu.unity
+    guid: 12b26fdbcb39b41d7bfefcc273888d89
   - enabled: 1
     path: Assets/Scenes/SampleScene.unity
     guid: d1d534e77e7cd004faa85b04841f7d35
@@ -18,6 +21,9 @@ EditorBuildSettings:
     path: Assets/Scenes/GameOver.unity
     guid: e47b36014b8f57a479183343547c55ac
   - enabled: 1
-    path: Assets/MainToon.unity
-    guid: 12b26fdbcb39b41d7bfefcc273888d89
+    path: Assets/WantToStart.unity
+    guid: cce875619e6aa4ccba2533849c270127
+  - enabled: 1
+    path: Assets/Showcase.unity
+    guid: 55e728fcbd9c1491a81c63b4b1a31477
   m_configObjects: {}
