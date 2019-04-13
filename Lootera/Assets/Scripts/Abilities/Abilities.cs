@@ -6,13 +6,18 @@ public class Abilities : MonoBehaviour
 {
     float doHealingShout;
     float doShieldBash;
+    float doDash;
     float closeRadius = 10f;
     float shieldBashDamage = 30f;
     float shieldBashCost = 70f;
+    float rollCost = 20f;
+    float rollSpeed = 60f;
     private PlayerHealth health;
     private PlayerMana mana;
     private GameObject player;
     private Animator animate;
+    private Joystick joystick;
+    private Movement mov;
     AbilitySlots abilities;
     int ability1;
     int ability2;
@@ -22,6 +27,7 @@ public class Abilities : MonoBehaviour
     {
         doHealingShout = 0f;
         player = GameObject.Find("Player");
+        mov = FindObjectOfType<Movement>();
         health = FindObjectOfType<PlayerHealth>();
         mana = FindObjectOfType<PlayerMana>();
         animate = player.GetComponent<Animator>();
@@ -29,7 +35,7 @@ public class Abilities : MonoBehaviour
         ability1 = abilities.GetAbility1();
         ability2 = abilities.GetAbility2();
         ability3 = abilities.GetAbility3();
-                
+
     }
 
     // Update is called once per frame
@@ -41,6 +47,8 @@ public class Abilities : MonoBehaviour
         doHealingShout = 0f;
         animate.SetFloat("ShieldBash", doShieldBash);
         doShieldBash = 0f;
+        animate.SetFloat("roll", doDash);
+        doDash = 0f;
 
     }
 
@@ -53,6 +61,9 @@ public class Abilities : MonoBehaviour
                 break;
             case 2:
                 ShieldBash();
+                break;
+            case 3:
+                Roll();
                 break;
         }
     }
@@ -67,6 +78,9 @@ public class Abilities : MonoBehaviour
             case 2:
                 ShieldBash();
                 break;
+            case 3:
+                Roll();
+                break;
         }
     }
 
@@ -80,12 +94,21 @@ public class Abilities : MonoBehaviour
             case 2:
                 ShieldBash();
                 break;
+            case 3:
+                Roll();
+                break;
         }
     }
 
+    IEnumerator MovementStop(int sec)
+    {
+        yield return new WaitForSeconds(sec);
+        mov.canMove = 1;
+    }
     void HealingShout()
     {
-        
+
+
         if (mana.Getmana() < 10f)
         {
             //Not Enough Mana
@@ -96,8 +119,10 @@ public class Abilities : MonoBehaviour
         }
         else
         {
+            mov.canMove = 0;
+            StartCoroutine(MovementStop(2));
             doHealingShout = 1f;
-            
+
             health.Heal(30f);
             mana.Damage(10f);
         }
@@ -113,6 +138,9 @@ public class Abilities : MonoBehaviour
         {
 
             doShieldBash = 1f;
+            mov.canMove = 0;
+            StartCoroutine(MovementStop(2));
+            mana.Damage(shieldBashCost);
             Collider[] colliders = Physics.OverlapSphere(player.transform.transform.position, closeRadius);
             foreach (Collider nearbyObject in colliders)
             {
@@ -126,12 +154,35 @@ public class Abilities : MonoBehaviour
                 if (monster != null)
                 {
                     monster.Damage(shieldBashDamage);
-                    mana.Damage(shieldBashCost);
+
                     print(monster.getHealth());
                 }
 
             }
         }
+    }
+
+    public void Roll()
+    {
+        joystick = FindObjectOfType<Joystick>();
+        if(mana.Getmana() < rollCost)
+        {
+
+        }
+        else
+        {
+            doDash = 1f;
+            mana.Damage(rollCost);
+            for (int i = 1; i <= 10; i++)
+            {
+                
+                Vector3 movement = new Vector3(joystick.Horizontal, 0.0f, joystick.Vertical);
+                player.transform.Translate(movement * rollSpeed * Time.deltaTime, Space.World);
+                
+            }
+
+        }
+
     }
 
 }

@@ -11,12 +11,13 @@ public class AbilitySlotter : MonoBehaviour
         abilities = GetComponent<AbilitySlots>();
         abilities.SetAbility1(1);
         abilities.SetAbility2(2);
-        
+        abilities.SetAbility3(3);
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
