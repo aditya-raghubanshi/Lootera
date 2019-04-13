@@ -9,6 +9,8 @@ public class PlayerMana : MonoBehaviour
     private float mana;
     private float maxMana;
     public float manaRegen = 1f;
+    public float permaDamageAmount;
+    public float tempMaxmana;
     Image manaBar;
 
     void Start()
@@ -16,6 +18,8 @@ public class PlayerMana : MonoBehaviour
         manaBar = GetComponent<Image>();
         mana = 100f;
         maxMana = 100f;
+        tempMaxmana = maxMana;
+        permaDamageAmount = 0f;
     }
 
     void Update()
@@ -26,9 +30,9 @@ public class PlayerMana : MonoBehaviour
             mana = 0;
         }
 
-        if (mana > maxMana)
+        if (mana > tempMaxmana)
         {
-            mana = maxMana;
+            mana = tempMaxmana;
         }
 
         manaBar.fillAmount = mana / maxMana;
@@ -52,6 +56,16 @@ public class PlayerMana : MonoBehaviour
             mana = 0;
         }
         manaBar.fillAmount = mana / maxMana;*/
+    }
+
+    public void permaDamage(float spentAmount)
+    {
+        tempMaxmana -= spentAmount;
+    }
+
+    public void permaRestore(float amount)
+    {
+        tempMaxmana += amount;
     }
 
     public void Heal(float recoverAmount)

@@ -12,6 +12,8 @@ public class Abilities : MonoBehaviour
     float shieldBashCost = 70f;
     float rollCost = 20f;
     float rollSpeed = 60f;
+    float damagingAuraDamage = 10f;
+    float doDamagingAura = 0f;
     private PlayerHealth health;
     private PlayerMana mana;
     private GameObject player;
@@ -22,6 +24,7 @@ public class Abilities : MonoBehaviour
     int ability1;
     int ability2;
     int ability3;
+    GameObject magicCircle;
 
     void Start()
     {
@@ -32,6 +35,8 @@ public class Abilities : MonoBehaviour
         mana = FindObjectOfType<PlayerMana>();
         animate = player.GetComponent<Animator>();
         abilities = FindObjectOfType<AbilitySlots>();
+        magicCircle = GameObject.Find("MagicCircle");
+        magicCircle.SetActive(false);
         ability1 = abilities.GetAbility1();
         ability2 = abilities.GetAbility2();
         ability3 = abilities.GetAbility3();
@@ -42,13 +47,17 @@ public class Abilities : MonoBehaviour
     void Update()
     {
 
-
+        
         animate.SetFloat("HealingShout", doHealingShout);
         doHealingShout = 0f;
         animate.SetFloat("ShieldBash", doShieldBash);
         doShieldBash = 0f;
         animate.SetFloat("roll", doDash);
         doDash = 0f;
+        if(doDamagingAura == 1f)
+        {
+            
+        }
 
     }
 
@@ -64,6 +73,9 @@ public class Abilities : MonoBehaviour
                 break;
             case 3:
                 Roll();
+                break;
+            case 4:
+                DoDamagingAura();
                 break;
         }
     }
@@ -81,6 +93,9 @@ public class Abilities : MonoBehaviour
             case 3:
                 Roll();
                 break;
+            case 4:
+                DoDamagingAura();
+                break;
         }
     }
 
@@ -96,6 +111,9 @@ public class Abilities : MonoBehaviour
                 break;
             case 3:
                 Roll();
+                break;
+            case 4:
+                DoDamagingAura();
                 break;
         }
     }
@@ -184,5 +202,46 @@ public class Abilities : MonoBehaviour
         }
 
     }
+
+    public void DamagingAura()
+    {
+        Collider[] colliders = Physics.OverlapSphere(player.transform.transform.position, closeRadius);
+        foreach (Collider nearbyObject in colliders)
+        {
+            Rigidbody rb = nearbyObject.GetComponent<Rigidbody>();
+            if (rb != null)
+            {
+                rb.AddExplosionForce(5000f, player.transform.transform.position, closeRadius);
+
+            }
+            Dungeon_Monster_Controller monster = nearbyObject.GetComponent<Dungeon_Monster_Controller>();
+            if (monster != null)
+            {
+                monster.Damage(damagingAuraDamage);
+
+            }
+
+        }
+    }
+
+    public void DoDamagingAura()
+    {
+        if(doDamagingAura == 0f) {
+
+            doDamagingAura = 1f;
+            InvokeRepeating("DamagingAura", 0f, 1f);
+            mana.permaDamage(40f);
+            magicCircle.SetActive(true);
+        }
+        else
+        {
+            CancelInvoke("DamagingAura");
+            doDamagingAura = 0f;
+            mana.permaRestore(40f);
+            magicCircle.SetActive(false);
+        }
+        
+    }
+
 
 }

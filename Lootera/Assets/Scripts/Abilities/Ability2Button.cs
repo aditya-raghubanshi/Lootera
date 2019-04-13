@@ -11,6 +11,7 @@ public class Ability2Button : MonoBehaviour
     public Sprite healingShout;
     public Sprite defaultImage;
     public Sprite shieldBash;
+    public Sprite magicCircle;
     public Sprite roll;
     Button button;
     void Start()
@@ -33,6 +34,9 @@ public class Ability2Button : MonoBehaviour
                 break;
             case 3:
                 button.GetComponent<Image>().sprite = roll;
+                break;
+            case 4:
+                button.GetComponent<Image>().sprite = magicCircle;
                 break;
         }
         // Add more cases as we add new Abilities
