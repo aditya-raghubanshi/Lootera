@@ -18,6 +18,7 @@ public class Dungeon_Monster_Controller : MonoBehaviour
     public float enemyHealth = 100f;
     private PlayerHealth health;
     public Image healthBar;
+    
 
     public NavMeshAgent Agent { get => agent; set => agent = value; }
 
@@ -31,6 +32,7 @@ public class Dungeon_Monster_Controller : MonoBehaviour
         //print("Dungeon Monster in Start");
         health = FindObjectOfType<PlayerHealth>();
        
+
     }
     public void FixedUpdate()
     {
@@ -92,6 +94,7 @@ public class Dungeon_Monster_Controller : MonoBehaviour
     void Attack(Vector3 PlayerPosition)
     {
         this.transform.LookAt(PlayerPosition);
+        
         //print("Inside attack function");
         anim.SetBool("running", false);
         anim.SetInteger("condition", 2);
@@ -123,5 +126,7 @@ public class Dungeon_Monster_Controller : MonoBehaviour
     {
         return enemyHealth;
     }
+
+
     //}
 }

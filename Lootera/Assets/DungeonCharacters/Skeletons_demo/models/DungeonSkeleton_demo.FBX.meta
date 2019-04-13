@@ -77,12 +77,12 @@ ModelImporter:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: DS_Skeleton_standard
-    second: {fileID: 2100000, guid: 0b178720c175bb7499aa3dc15acc241b, type: 2}
+    second: {fileID: 2100000, guid: 286bfe7af7bc3674b8c59fbc601e9291, type: 2}
   - first:
       type: UnityEngine:Material
       assembly: UnityEngine.CoreModule
       name: DS_equipment_standard
-    second: {fileID: 2100000, guid: 5a32afad76a49ca4ca1205d719b67777, type: 2}
+    second: {fileID: 2100000, guid: e5e81676514139d4c85683994e6378df, type: 2}
   materials:
     importMaterials: 1
     materialName: 0
@@ -499,11 +499,11 @@ ModelImporter:
       position: {x: -0.13765576, y: -9.462237e-11, z: -0.000000012111664}
       rotation: {x: 0, y: 0, z: 0, w: 1}
       scale: {x: -1, y: -1, z: -1}
-    armTwist: 0.5
+    armTwist: 0.591
     foreArmTwist: 0.5
     upperLegTwist: 0.5
     legTwist: 0.5
-    armStretch: 0.05
+    armStretch: 0.544
     legStretch: 0.05
     feetSpacing: 0
     rootMotionBoneName: 
