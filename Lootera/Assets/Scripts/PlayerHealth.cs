@@ -10,6 +10,7 @@ public class PlayerHealth : MonoBehaviour
     private float maxHealth;
     private Image healthbar;
     public float resistance;
+    GameObject gameOver;
     Animator animate;
     GameObject player;
     Movement mvmnt;
@@ -23,6 +24,8 @@ public class PlayerHealth : MonoBehaviour
         player = GameObject.Find("Player");
         animate = player.GetComponent<Animator>();
         mvmnt = player.GetComponent<Movement>();
+        gameOver = GameObject.Find("Game Over 1");
+        gameOver.SetActive(false);
         
     }
 
@@ -49,9 +52,13 @@ public class PlayerHealth : MonoBehaviour
 
         if (health <= 0)
         {
-            health = 0;
+            Debug.Log("health 0");
+            health = 0f;
             animate.SetFloat("dead", 1f);
-            mvmnt.movSpeed = 0f;
+            mvmnt.canMove = 0;
+            StartCoroutine(DelayedDeath(2));
+            
+            
         }
         healthbar.fillAmount = health / maxHealth;
     }
@@ -64,5 +71,12 @@ public class PlayerHealth : MonoBehaviour
             health = maxHealth;
         }
         healthbar.fillAmount = health / maxHealth;
+    }
+
+    IEnumerator DelayedDeath(int time)
+    {
+        yield return new WaitForSeconds(time);
+        Debug.Log("...................................................................delayed death");
+        gameOver.SetActive(true);
     }
 }
