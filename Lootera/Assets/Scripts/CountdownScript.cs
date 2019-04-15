@@ -46,9 +46,9 @@ public class CountdownScript : MonoBehaviour
 
     void GameOver()
     {
-        animate.SetFloat("dead", 1f);
-        mvmnt.canMove = 0;
-        StartCoroutine(DelayedDeath(2));
+        //animate.SetFloat("dead", 1f);
+        //mvmnt.canMove = 0;
+        //StartCoroutine(DelayedDeath(2));
     }
 
     public float getTimer()
