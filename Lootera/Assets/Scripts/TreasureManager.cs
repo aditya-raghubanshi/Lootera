@@ -26,7 +26,8 @@ public class TreasureManager : MonoBehaviour
 
     void Start()
     {
-        LoadSerializedWeapons();
+        LoadSerializedBackpackInv();
+        LoadSerializedBodyInv();
         interaction = FindObjectOfType<InteractionButton>();
         player = GameObject.Find("Player");
         //interactionTransform = this.transform;
@@ -75,8 +76,9 @@ public class TreasureManager : MonoBehaviour
         playerInventory.addItemToMainInventory(weapons[weaponIndex], 1);
         playerInventory.openMainInventory();
         playerInventory.openCharacterInventory();
+        Debug.Log("opened!!!!");
 
-        SaveSerializedWeapons();
+        //SaveSerializedWeapons();
     }
 
     void Spawn()
@@ -111,9 +113,9 @@ public class TreasureManager : MonoBehaviour
         }
     }
 
-    public void SaveSerializedWeapons()
+    public void SaveSerializedBackpackInv()
     {
-        string serializedWeaponFileName = Application.persistentDataPath + "/treasureWeaponInfo.dat";
+        string serializedWeaponFileName = Application.persistentDataPath + "/backpackInv.dat";
         BinaryFormatter bf = new BinaryFormatter();
         if (File.Exists(serializedWeaponFileName))
         {
@@ -124,9 +126,9 @@ public class TreasureManager : MonoBehaviour
         file.Close();
     }
 
-    private void LoadSerializedWeapons()
+    private void LoadSerializedBackpackInv()
     {
-        string serializedWeaponFileName = Application.persistentDataPath + "/treasureWeaponInfo.dat";
+        string serializedWeaponFileName = Application.persistentDataPath + "/backpackInv.dat";
         if (File.Exists(serializedWeaponFileName))
         {
             BinaryFormatter bf = new BinaryFormatter();
@@ -135,6 +137,36 @@ public class TreasureManager : MonoBehaviour
             {
                 //inventory = (List<WeaponSaveData>)bf.Deserialize(fileStream);
                 inventory = (List<int>)bf.Deserialize(fileStream);
+                playerInventory.mainInventory.deleteAllItems();
+                for (int i = 0; i < inventory.Count; i++)
+                {
+                    playerInventory.mainInventory.addItemToInventory(inventory[i]);
+                }
+            }
+
+            fileStream.Close();
+        }
+        else
+        {
+            Debug.Log("Loading Data failed. File " + serializedWeaponFileName + "doesn't exist");
+        }
+    }
+
+    private void LoadSerializedBodyInv()
+    {
+        string serializedWeaponFileName = Application.persistentDataPath + "/bodyInv.dat";
+        if (File.Exists(serializedWeaponFileName))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream fileStream = File.Open(serializedWeaponFileName, FileMode.Open);
+            if (fileStream.Length != 0)
+            {
+                //inventory = (List<WeaponSaveData>)bf.Deserialize(fileStream);
+                playerInventory.characterSystemInventory.deleteAllItems();
+                List<int> inv = (List<int>)bf.Deserialize(fileStream);
+                for (int i=0; i<inv.Count; i++) {
+                    playerInventory.characterSystemInventory.addItemToInventory(inv[i]);
+                }
             }
 
             fileStream.Close();

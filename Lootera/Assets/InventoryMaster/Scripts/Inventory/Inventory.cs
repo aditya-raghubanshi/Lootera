@@ -5,6 +5,8 @@ using UnityEditor;
 #endif
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
 
 public class Inventory : MonoBehaviour
 {
@@ -146,10 +148,47 @@ public class Inventory : MonoBehaviour
         updateItemList();
     }
 
-    public void closeInventory()
+    public bool closeInventory()
     {
-        this.gameObject.SetActive(false);
-        checkIfAllInventoryClosed();
+        if (upadteSlotter())
+        {
+            this.gameObject.SetActive(false);
+            checkIfAllInventoryClosed();
+            return true;
+        }
+        return false;
+    }
+    
+    public void SaveSerializedBodyInv()
+    {
+        string serializedWeaponFileName = Application.persistentDataPath + "/bodyInv.dat";
+        BinaryFormatter bf = new BinaryFormatter();
+        if (File.Exists(serializedWeaponFileName))
+        {
+            File.Delete(serializedWeaponFileName);
+        }
+        FileStream file = File.Create(serializedWeaponFileName);
+        bf.Serialize(file, playerInventory.characterSystem);
+        file.Close();
+    }
+
+    AbilitySlots abilities;
+    bool upadteSlotter()
+    {
+        if (characterSystem() && this.getItemList().Count==4)
+        {
+            abilities = GetComponent<AbilitySlots>();
+            List<Item> bodyItems = this.getItemList();
+            for (int i = 0; i < bodyItems.Count; i++)
+            {
+                Debug.Log(bodyItems[i].itemID);
+                if (i == 0) { abilities.SetAbility1(bodyItems[i].itemID); }
+                else if (i == 1) { abilities.SetAbility2(bodyItems[i].itemID); }
+                else if (i == 2) { abilities.SetAbility3(bodyItems[i].itemID); }
+            }
+            return true;
+        }
+        return false;
     }
 
     public void openInventory()
