@@ -8,6 +8,7 @@ public class HealingParticle : MonoBehaviour
     GameObject player;
     GameObject aura;
     public AudioSource source;
+    public AudioClip healingSound;
 
     void Start()
     {
@@ -16,20 +17,21 @@ public class HealingParticle : MonoBehaviour
         aura.SetActive(false);
         source = GetComponent<AudioSource>();
         
+        
 
 
     }
 
     public void HealingParticleOn()
     {
+        source.clip = healingSound;
         aura.SetActive(true);
-        Debug.Log("On Event triggered");
         source.Play();
     }
 
     public void HealingParticleOff()
     {
-        Debug.Log("Off Event triggered");
+        
         aura.SetActive(false);
     }
 }
