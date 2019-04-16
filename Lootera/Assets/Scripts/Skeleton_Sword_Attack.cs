@@ -8,28 +8,31 @@ public class Skeleton_Sword_Attack : MonoBehaviour
     Movement Player;
     public AudioSource source;
     PlayerHealth health;
+    private Skeleton_Animation_Script damageAnimationsScript;
     Animator anim;
-
+    bool doDamage = false;
     void OnTriggerEnter(Collider col)
     {
 
-        health = FindObjectOfType<PlayerHealth>();        
+
+        health = FindObjectOfType<PlayerHealth>();
+        damageAnimationsScript = FindObjectOfType<Skeleton_Animation_Script>();
         Player = col.gameObject.GetComponent<Movement>();
         source = GetComponent<AudioSource>();
         anim = GetComponentInParent<Animator>();
-        print(anim);
         if (Player != null)
         {
             print("Inside Player");
-            if (anim.GetBool("attacking") == true)
+            print(anim.GetBool("attacking"));
+            print(damageAnimationsScript.getDoDamage());
+            source.Play(); 
+            if (damageAnimationsScript.getDoDamage())
             {
                 health.Damage(damage);
-                source.Play();
             }
         }
 
     }
 
-  
 }
 

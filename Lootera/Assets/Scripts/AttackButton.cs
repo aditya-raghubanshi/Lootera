@@ -12,6 +12,8 @@ public class AttackButton : MonoBehaviour
     Movement movement;
     public void attack()
     {
+
+        print("Attack Button Pressed");
         player = GameObject.Find("Player");
         animate = player.GetComponent<Animator>();
         Movement movement = player.GetComponent<Movement>();
