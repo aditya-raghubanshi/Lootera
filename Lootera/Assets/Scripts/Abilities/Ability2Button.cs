@@ -9,7 +9,10 @@ public class Ability2Button : MonoBehaviour
     AbilitySlots slots;
     int ability2;
     public Sprite healingShout;
+    public Sprite defaultImage;
     public Sprite shieldBash;
+    public Sprite magicCircle;
+    public Sprite roll;
     Button button;
     void Start()
     {
@@ -20,11 +23,20 @@ public class Ability2Button : MonoBehaviour
 
         switch (ability2)
         {
+            case 0:
+                button.GetComponent<Image>().sprite = defaultImage;
+                break;
             case 1:
                 button.GetComponent<Image>().sprite = healingShout;
                 break;
             case 2:
                 button.GetComponent<Image>().sprite = shieldBash;
+                break;
+            case 3:
+                button.GetComponent<Image>().sprite = roll;
+                break;
+            case 4:
+                button.GetComponent<Image>().sprite = magicCircle;
                 break;
         }
         // Add more cases as we add new Abilities

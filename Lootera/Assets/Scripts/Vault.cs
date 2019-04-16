@@ -1,0 +1,174 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.IO;
+
+public class Vault : MonoBehaviour
+{
+    public Inventory vaultMenu;
+    public Inventory backpackMenu;
+    public Inventory bodyMenu;
+
+    // Start is called before the first frame update
+    void Start()
+    {
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+
+    public void openInventories()
+    {
+        LoadSerializedBackpackInv();
+        LoadSerializedBodyInv();
+        LoadSerializedVaultInv();
+
+        vaultMenu.openInventory();
+        backpackMenu.openInventory();
+        bodyMenu.openInventory();
+    }
+
+    public void closeInventories()
+    {
+        if (bodyMenu.closeInventory()) {
+            SaveSerializedBackpackInv();
+            SaveSerializedBodyInv();
+            SaveSerializedVaultInv();
+
+            vaultMenu.closeInventory();
+            backpackMenu.closeInventory();
+        }
+    }
+
+    private void LoadSerializedBackpackInv()
+    {
+        string serializedWeaponFileName = Application.persistentDataPath + "/backpackInv.dat";
+        if (File.Exists(serializedWeaponFileName))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream fileStream = File.Open(serializedWeaponFileName, FileMode.Open);
+            if (fileStream.Length != 0)
+            {
+                //inventory = (List<WeaponSaveData>)bf.Deserialize(fileStream);
+                List<int> inv = (List<int>)bf.Deserialize(fileStream);
+                vaultMenu.deleteAllItems();
+                for (int i = 0; i < inv.Count; i++)
+                {
+                    vaultMenu.addItemToInventory(inv[i]);
+                }
+            }
+
+            fileStream.Close();
+        }
+        else
+        {
+            Debug.Log("Loading Data failed. File " + serializedWeaponFileName + "doesn't exist");
+        }
+    }
+
+    private void LoadSerializedBodyInv()
+    {
+        string serializedWeaponFileName = Application.persistentDataPath + "/bodyInv.dat";
+        if (File.Exists(serializedWeaponFileName))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream fileStream = File.Open(serializedWeaponFileName, FileMode.Open);
+            if (fileStream.Length != 0)
+            {
+                //inventory = (List<WeaponSaveData>)bf.Deserialize(fileStream);
+                backpackMenu.deleteAllItems();
+                List<int> inv = (List<int>)bf.Deserialize(fileStream);
+                for (int i = 0; i < inv.Count; i++)
+                {
+                    backpackMenu.addItemToInventory(inv[i]);
+                }
+            }
+
+            fileStream.Close();
+        }
+        else
+        {
+            Debug.Log("Loading Data failed. File " + serializedWeaponFileName + "doesn't exist");
+        }
+    }
+
+
+    private void LoadSerializedVaultInv()
+    {
+        string serializedWeaponFileName = Application.persistentDataPath + "/vaultInv.dat";
+        if (File.Exists(serializedWeaponFileName))
+        {
+            BinaryFormatter bf = new BinaryFormatter();
+            FileStream fileStream = File.Open(serializedWeaponFileName, FileMode.Open);
+            if (fileStream.Length != 0)
+            {
+                //inventory = (List<WeaponSaveData>)bf.Deserialize(fileStream);
+                vaultMenu.deleteAllItems();
+                List<int> inv = (List<int>)bf.Deserialize(fileStream);
+                for (int i = 0; i < inv.Count; i++)
+                {
+                    vaultMenu.addItemToInventory(inv[i]);
+                }
+            }
+
+            fileStream.Close();
+        }
+        else
+        {
+            Debug.Log("Loading Data failed. File " + serializedWeaponFileName + "doesn't exist");
+        }
+    }
+
+    public List<int> getIDs(Inventory inventory)
+    {
+        List<int> IDs = new List<int>();
+        for(int i=0; i<inventory.getItemList().Count; i++)
+        {
+            IDs.Add(inventory.getItemList()[i].itemID);
+        }
+        return IDs;
+    }
+
+    public void SaveSerializedBackpackInv()
+    {
+        string serializedWeaponFileName = Application.persistentDataPath + "/backpackInv.dat";
+        BinaryFormatter bf = new BinaryFormatter();
+        if (File.Exists(serializedWeaponFileName))
+        {
+            File.Delete(serializedWeaponFileName);
+        }
+        FileStream file = File.Create(serializedWeaponFileName);
+        bf.Serialize(file, getIDs(backpackMenu));
+        file.Close();
+    }
+
+    public void SaveSerializedBodyInv()
+    {
+        string serializedWeaponFileName = Application.persistentDataPath + "/bodyInv.dat";
+        BinaryFormatter bf = new BinaryFormatter();
+        if (File.Exists(serializedWeaponFileName))
+        {
+            File.Delete(serializedWeaponFileName);
+        }
+        FileStream file = File.Create(serializedWeaponFileName);
+        bf.Serialize(file, getIDs(bodyMenu));
+        file.Close();
+    }
+
+    public void SaveSerializedVaultInv()
+    {
+        string serializedWeaponFileName = Application.persistentDataPath + "/vaultInv.dat";
+        BinaryFormatter bf = new BinaryFormatter();
+        if (File.Exists(serializedWeaponFileName))
+        {
+            File.Delete(serializedWeaponFileName);
+        }
+        FileStream file = File.Create(serializedWeaponFileName);
+        bf.Serialize(file, getIDs(vaultMenu));
+        file.Close();
+    }
+}

@@ -91,7 +91,7 @@ ModelImporter:
       name: DS_onehand_attack_A
       takeName: Take 001
       firstFrame: 0
-      lastFrame: 45
+      lastFrame: 31
       wrapMode: 0
       orientationOffsetY: 0
       level: 0
@@ -111,11 +111,24 @@ ModelImporter:
       bodyMask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
       curves: []
       events:
-      - time: 0.30563
+      - time: 0.41040608
+        functionName: setDoDamageTrue
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.58096445
+        functionName: setDoDamageFalse
+        data: 
+        objectReferenceParameter: {instanceID: 0}
+        floatParameter: 0
+        intParameter: 0
+        messageOptions: 0
+      - time: 0.49340963
         functionName: DamageEvent
         data: 
-        objectReferenceParameter: {fileID: 11500000, guid: df76f50fd9997094ba7633171858c3ff,
-          type: 3}
+        objectReferenceParameter: {instanceID: 0}
         floatParameter: 0
         intParameter: 0
         messageOptions: 0

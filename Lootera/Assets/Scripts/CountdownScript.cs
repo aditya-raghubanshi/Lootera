@@ -11,10 +11,12 @@ public class CountdownScript : MonoBehaviour
     private float timer;
     private bool canCount = true;
     private bool doOnce = false;
+    GameObject gameOver;
 
     void Start()
     {
         timer = mainTimer;
+        gameOver = GameObject.Find("Game Over 2");
     }
 
     void Update()
@@ -44,7 +46,9 @@ public class CountdownScript : MonoBehaviour
 
     void GameOver()
     {
-        //Load a new scene
+        //animate.SetFloat("dead", 1f);
+        //mvmnt.canMove = 0;
+        //StartCoroutine(DelayedDeath(2));
     }
 
     public float getTimer()
@@ -55,5 +59,12 @@ public class CountdownScript : MonoBehaviour
     public float getMaxTimer()
     {
         return mainTimer;
+    }
+
+    IEnumerator DelayedDeath(int time)
+    {
+        yield return new WaitForSeconds(time);
+        
+        gameOver.SetActive(true);
     }
 }

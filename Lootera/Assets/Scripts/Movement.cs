@@ -10,6 +10,7 @@ public class Movement : MonoBehaviour
     float verticalMovement = 0f;
     public float sens = 0.2f;
     public float rotsens = 0.08f;
+    public int canMove = 1;
     void Start()
     {
         joystick = FindObjectOfType<Joystick>();
@@ -18,43 +19,47 @@ public class Movement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        var rigidbody = GetComponent<Rigidbody>();
-        var animate = GetComponent<Animator>();
-        rigidbody.freezeRotation = true;
-        if (joystick.Horizontal > sens)
-            horizontalMovement = 1f;
-        else if (joystick.Horizontal < -sens)
-            horizontalMovement = -1f;
-        else
-            horizontalMovement = 0f;
+        if(canMove == 1) {
+            var rigidbody = GetComponent<Rigidbody>();
+            var animate = GetComponent<Animator>();
+            rigidbody.freezeRotation = true;
+            if (joystick.Horizontal > sens)
+                horizontalMovement = 1f;
+            else if (joystick.Horizontal < -sens)
+                horizontalMovement = -1f;
+            else
+                horizontalMovement = 0f;
 
 
-        if (joystick.Vertical > sens)
-            verticalMovement = 1f;
-        else if (joystick.Vertical < -sens)
-            verticalMovement = -1f;
-        else
-            verticalMovement = 0f;
+            if (joystick.Vertical > sens)
+                verticalMovement = 1f;
+            else if (joystick.Vertical < -sens)
+                verticalMovement = -1f;
+            else
+                verticalMovement = 0f;
 
-        Vector3 movement = new Vector3(horizontalMovement, 0.0f, verticalMovement);
-        if (movement != Vector3.zero)
-        {
-            transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), rotsens);
-            transform.Translate(movement * movSpeed * Time.deltaTime, Space.World);
+            Vector3 movement = new Vector3(horizontalMovement, 0.0f, verticalMovement);
+            if (movement != Vector3.zero)
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.LookRotation(movement), rotsens);
+                transform.Translate(movement * movSpeed * Time.deltaTime, Space.World);
+            }
+            if (horizontalMovement != 0 || verticalMovement != 0)
+            {
+                animate.SetFloat("Run", 1f);
+                //animate.SetFloat("Turn", 1f, 0f, Time.deltaTime);
+            }
+
+            else
+                animate.SetFloat("Run", -1f);
+
+            if (transform.position.y < -20f)
+            {
+                transform.position = new Vector3(64f, 5f, 3f);
+            }
+
         }
-        if (horizontalMovement != 0 || verticalMovement != 0)
-        {
-            animate.SetFloat("Run", 1f);
-            //animate.SetFloat("Turn", 1f, 0f, Time.deltaTime);
-        }
-            
-        else
-            animate.SetFloat("Run", -1f);
         
-        if (transform.position.y < -20f)
-        {
-            transform.position = new Vector3(64f, 5f, 3f);
-        }
         //rigidbody.velocity = new Vector3(horizontalMovement * movSpeed * Time.deltaTime, rigidbody.velocity.y, verticalMovement * movSpeed * Time.deltaTime);
 
     }
