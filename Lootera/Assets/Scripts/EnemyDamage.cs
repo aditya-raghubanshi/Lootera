@@ -7,7 +7,7 @@ public class EnemyDamage : MonoBehaviour
     public float dmgAmount = 10f;
     private PlayerHealth health;
 
-    private AudioSource source;
+    public AudioSource source;
     float range = 3f;
 
     void Start()
