@@ -6,6 +6,7 @@ public class PortalActivation : MonoBehaviour
 {
 	public GameObject gameObjectToEnable;
 	GameObject player;
+	GameObject PortalCube1,PortalCube2,PortalCube3;
     // Start is called before the first frame update
     void Start()
     {
@@ -22,6 +23,10 @@ public class PortalActivation : MonoBehaviour
 		GameObject FlameGameObject5 = gameObjectToEnable.transform.Find("Exit3Flame1").gameObject;//gameObjectToEnable.transform.GetChild(1).gameObject;
 		GameObject FlameGameObject6 = gameObjectToEnable.transform.Find("Exit3Flame2").gameObject;
 		
+		PortalCube1 = GameObject.Find("PortalCube1");
+		PortalCube2 = GameObject.Find("PortalCube2");
+		PortalCube3 = GameObject.Find("PortalCube3");
+		
 		if(exitGateToBeEnabled==1){
 			//player.transform.position = new Vector3(-0.52f, 0.54f, 0f);
 			//player.transform.position = new Vector3(-70f,0.54f,150f);
@@ -35,6 +40,10 @@ public class PortalActivation : MonoBehaviour
 			FlameGameObject4.SetActive(false);
 			FlameGameObject5.SetActive(false);
 			FlameGameObject6.SetActive(false);
+			
+			PortalCube1.SetActive(true);
+			PortalCube2.SetActive(false);
+			PortalCube3.SetActive(false);
 		}
 		else if(exitGateToBeEnabled==2){
 			//player.transform.position = new Vector3(-70f,0.54f,150f);
@@ -49,6 +58,10 @@ public class PortalActivation : MonoBehaviour
 			FlameGameObject4.SetActive(true);
 			FlameGameObject5.SetActive(false);
 			FlameGameObject6.SetActive(false);
+			
+			PortalCube1.SetActive(false);
+			PortalCube2.SetActive(true);
+			PortalCube3.SetActive(false);
 		}
 		else{
 			ChildGameObject1.SetActive(false);
@@ -61,6 +74,10 @@ public class PortalActivation : MonoBehaviour
 			FlameGameObject4.SetActive(false);
 			FlameGameObject5.SetActive(true);
 			FlameGameObject6.SetActive(true);
+			
+			PortalCube1.SetActive(false);
+			PortalCube2.SetActive(false);
+			PortalCube3.SetActive(true);
 		}
     }
 

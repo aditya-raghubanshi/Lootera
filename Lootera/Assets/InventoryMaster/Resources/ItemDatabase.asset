@@ -608,7 +608,7 @@ MonoBehaviour:
     itemIcon: {fileID: 21300000, guid: 6481f264974f8804eb4a5059c1b36703, type: 3}
     itemModel: {fileID: 0}
     itemValue: 1
-    itemType: 0
+    itemType: 13
     itemWeight: 0
     maxStack: 1
     indexItemInList: 999
@@ -620,7 +620,7 @@ MonoBehaviour:
     itemIcon: {fileID: 21300000, guid: 5869560fbad1f7843a917ec449036aba, type: 3}
     itemModel: {fileID: 0}
     itemValue: 1
-    itemType: 0
+    itemType: 13
     itemWeight: 0
     maxStack: 1
     indexItemInList: 999
@@ -632,7 +632,19 @@ MonoBehaviour:
     itemIcon: {fileID: 21300000, guid: 6037fc21044713a4dafa4b219adfe142, type: 3}
     itemModel: {fileID: 0}
     itemValue: 1
-    itemType: 0
+    itemType: 13
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
+  - itemName: Bow
+    itemID: 42
+    itemDesc: 
+    itemIcon: {fileID: 21300000, guid: cddb52065158052439a97fccab06638d, type: 3}
+    itemModel: {fileID: 0}
+    itemValue: 1
+    itemType: 1
     itemWeight: 0
     maxStack: 1
     indexItemInList: 999

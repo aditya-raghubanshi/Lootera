@@ -19,8 +19,9 @@ public class AttackButton : MonoBehaviour
     {
         //dragonblade = GameObject.Find("Dragonblade");
         //Bow = GameObject.Find("BOW");
+        Debug.Log(weaponID);
         Debug.Log("Slotter called");
-        if(weaponID == 1)
+        if(weaponID == 36)
         {
             Debug.Log(" BOW " + Bow.activeInHierarchy);
             Debug.Log(" dragonblade " + dragonblade.activeInHierarchy);
@@ -44,7 +45,7 @@ public class AttackButton : MonoBehaviour
             //weaponID = 2;
             //attackcall();
         }
-        else if( weaponID == 2)
+        else if( weaponID == 42)
         {
             Debug.Log(" BOW " + Bow.activeInHierarchy);
             Debug.Log(" dragonblade " + dragonblade.activeInHierarchy);
@@ -63,7 +64,7 @@ public class AttackButton : MonoBehaviour
             //arrowspawn();
 
         }
-        else if( weaponID == 3)
+        else if( weaponID == 37)
         {
             if (!Viking_Sword.activeInHierarchy)
                 Viking_Sword.SetActive(true);
@@ -80,7 +81,7 @@ public class AttackButton : MonoBehaviour
     }
     public void choseAttack()
     {
-        if (weaponID == 1 || weaponID == 3)
+        if (weaponID == 36 || weaponID == 37)
         {
             attackcall();
         }

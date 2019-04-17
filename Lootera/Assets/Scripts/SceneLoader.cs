@@ -10,17 +10,17 @@ public class SceneLoader : MonoBehaviour
     public Slider slider;
     public int sceneIndex;
 
-    public void LoadLevel(int sceneIndex)
+    public void LoadLevel()
     {
-        sceneIndex = Random.Range(1, 5);
+        sceneIndex = Random.Range(1, 3);
       //  SceneManager.LoadScene(sceneIndex);
         Debug.Log("Scene Loaded");
-        StartCoroutine(LoadAsynchronously(1));
+        StartCoroutine(this.LoadAsynchronously(sceneIndex));
     }
 
-    IEnumerator LoadAsynchronously(int sceneIndex)
-    {
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+    IEnumerator LoadAsynchronously(int scene)
+     { 
+        AsyncOperation operation = SceneManager.LoadSceneAsync(scene);
         loadingScreen.SetActive(true);
 
         while(!operation.isDone)
@@ -32,4 +32,5 @@ public class SceneLoader : MonoBehaviour
             yield return null;
         }
     }
+
 }
