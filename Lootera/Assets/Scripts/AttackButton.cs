@@ -13,7 +13,7 @@ public class AttackButton : MonoBehaviour
     public bool pressed = false;
     Movement movement;
     int count = 1;
-    public static int weaponID = 2;
+    public static int weaponID = 42;
 
     public void SlotWeapon(int weaponID)
     {
@@ -42,7 +42,7 @@ public class AttackButton : MonoBehaviour
             {
                 Viking_Sword.SetActive(false);
             }
-            //weaponID = 2;
+            //weaponID = 42;
             //attackcall();
         }
         else if( weaponID == 42)
@@ -60,7 +60,7 @@ public class AttackButton : MonoBehaviour
             {
                 Viking_Sword.SetActive(false);
             }
-            //weaponID = 3;
+            //weaponID = 37;
             //arrowspawn();
 
         }
@@ -76,7 +76,7 @@ public class AttackButton : MonoBehaviour
             {
                 Bow.SetActive(false);
             }
-            //weaponID = 1;
+            //weaponID = 36;
         }
     }
     public void choseAttack()
@@ -85,7 +85,7 @@ public class AttackButton : MonoBehaviour
         {
             attackcall();
         }
-        else
+        else if(weaponID == 42)
         {
             arrowspawn();
         }
@@ -109,6 +109,7 @@ public class AttackButton : MonoBehaviour
     }
     public void Update()
     {
+        Debug.Log(weaponID);
         SlotWeapon(weaponID);
     }
     public void attackfunc()
