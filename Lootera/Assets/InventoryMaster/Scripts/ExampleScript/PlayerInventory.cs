@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine.UI;
 using UnityEngine.EventSystems;
+using System.Collections.Generic;
 
 public class PlayerInventory : MonoBehaviour
 {
@@ -10,8 +11,8 @@ public class PlayerInventory : MonoBehaviour
     public GameObject craftSystem;
     private Inventory craftSystemInventory;
     private CraftSystem cS;
-    private Inventory mainInventory;
-    private Inventory characterSystemInventory;
+    public Inventory mainInventory;
+    public Inventory characterSystemInventory;
     private Tooltip toolTip;
 
     private InputManager inputManagerDatabase;
@@ -283,6 +284,7 @@ public class PlayerInventory : MonoBehaviour
 
     public void openCharacterInventory()
     {
+        Debug.Log("opening character inventory");
         if (!characterSystem.activeSelf)
         {
             characterSystemInventory.openInventory();
@@ -297,6 +299,7 @@ public class PlayerInventory : MonoBehaviour
 
     public void openMainInventory()
     {
+        Debug.Log("opening main inventory");
         if (!inventory.activeSelf)
         {
             mainInventory.openInventory();
