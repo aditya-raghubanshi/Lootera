@@ -6,17 +6,24 @@ using UnityEngine.UI;
 public class CountdownScript : MonoBehaviour
 {
     [SerializeField] private Text uiText;
-    [SerializeField] private float mainTimer = 300;
+    [SerializeField] private float mainTimer = 300f;
 
     private float timer;
     private bool canCount = true;
     private bool doOnce = false;
     GameObject gameOver;
+    Movement mvmnt;
+    Animator animate;
+    GameObject player;
 
     void Start()
     {
         timer = mainTimer;
         gameOver = GameObject.Find("Game Over 2");
+        gameOver.SetActive(false);
+        mvmnt = FindObjectOfType<Movement>();
+        player = GameObject.Find("Player");
+        animate = player.GetComponent<Animator>();
     }
 
     void Update()
@@ -46,9 +53,9 @@ public class CountdownScript : MonoBehaviour
 
     void GameOver()
     {
-        //animate.SetFloat("dead", 1f);
-        //mvmnt.canMove = 0;
-        //StartCoroutine(DelayedDeath(2));
+        animate.SetFloat("dead", 1f);
+        mvmnt.canMove = 0;
+        StartCoroutine(DelayedDeath(2));
     }
 
     public float getTimer()

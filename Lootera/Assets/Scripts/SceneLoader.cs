@@ -15,7 +15,7 @@ public class SceneLoader : MonoBehaviour
         sceneIndex = Random.Range(1, 2);
       //  SceneManager.LoadScene(sceneIndex);
         Debug.Log("Scene Loaded");
-        StartCoroutine(LoadAsynchronously(sceneIndex));
+        StartCoroutine(LoadAsynchronously(1));
     }
 
     IEnumerator LoadAsynchronously(int sceneIndex)
