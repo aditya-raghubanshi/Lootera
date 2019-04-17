@@ -9,7 +9,7 @@ using System;
 public class TreasureManager : MonoBehaviour
 {
     [SerializeField] public GameObject treasureChest = null;
-    int[] weapons = new int[] {42, 42, 42, 42};                // 36 dragonblade, 37 viking sword, 38 healing shot
+    List<int> weapons = new List<int>() {42, 42, 42, 42};                // 36 dragonblade, 37 viking sword, 38 healing shot, 42 bow
     List<GameObject> weaponObjects = new List<GameObject>();                // The weapon objects spawned.
     private Vector3[] weaponPositions;
     [SerializeField] public float spawnTime = 4f;            // How long between each spawn.
@@ -18,6 +18,7 @@ public class TreasureManager : MonoBehaviour
     static int weaponIndex = 0;
     public PlayerInventory playerInventory;
     public GameObject vaultPanel;
+    public PauseManager pauseManager;
 
     public static List<int> inventory = new List<int>();
 
@@ -37,7 +38,7 @@ public class TreasureManager : MonoBehaviour
         //interactionTransform = this.transform;
 
         // Call the Spawn function after a delay of the spawnTime and then continue to call after the same amount of time.
-        weaponPositions = new Vector3[weapons.Length];
+        weaponPositions = new Vector3[weapons.Count];
         //weaponObjects = new GameObject[weapons.Length];
         for (int i = 0; i < spawnNumber; i++)
         {
@@ -73,9 +74,11 @@ public class TreasureManager : MonoBehaviour
 
     public void openInventories()
     {
-        vaultPanel.SetActive(true);
         playerInventory.openMainInventory();
         playerInventory.openCharacterInventory();
+        vaultPanel.SetActive(true);
+        pauseManager.Pause();
+
     }
 
     public void closeInventories()
@@ -83,13 +86,13 @@ public class TreasureManager : MonoBehaviour
         vaultPanel.SetActive(false);
         playerInventory.characterSystemInventory.closeInventory();
         playerInventory.mainInventory.closeInventory();
+        pauseManager.Resume();
     }
 
     public void Interact(int weaponIndex)
     {
         Debug.Log("Interacting with Treausre");
         //inventory.Add(new WeaponSaveData(weapons[weaponIndex].ToString()));
-        //Destroy(weaponObjects[weaponIndex]);
         inventory.Add(weapons[weaponIndex]);
         playerInventory.addItemToMainInventory(weapons[weaponIndex], 1);
         openInventories();
@@ -97,8 +100,8 @@ public class TreasureManager : MonoBehaviour
         System.Random rnd = new System.Random();
         Gems.gems = Level.level + rnd.Next(1, 11);
 
-        //weaponObjects[weaponIndex].delete();
-        //weaponObjects.RemoveAt(weaponIndex);
+        Destroy(weaponObjects[weaponIndex]);
+        weaponObjects.RemoveAt(weaponIndex);
         Debug.Log("opened!!!!");
 
         //SaveSerializedWeapons();
