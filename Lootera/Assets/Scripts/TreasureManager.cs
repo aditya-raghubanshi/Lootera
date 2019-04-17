@@ -48,7 +48,7 @@ public class TreasureManager : MonoBehaviour
 
     void Update()
     {
-        if (interaction && interaction.Pressed)
+        if (interaction.Pressed)
         {
 
             Debug.Log("INTERACTION PRESSED!");
@@ -78,7 +78,7 @@ public class TreasureManager : MonoBehaviour
         playerInventory.openCharacterInventory();
         vaultPanel.SetActive(true);
         pauseManager.Pause();
-        Debug.Log("opeingingigi");
+
     }
 
     public void closeInventories()
