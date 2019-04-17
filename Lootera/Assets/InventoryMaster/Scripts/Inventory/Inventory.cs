@@ -159,7 +159,7 @@ public class Inventory : MonoBehaviour
         return false;
     }
     
-    public void SaveSerializedBodyInv()
+/*    public void SaveSerializedBodyInv()
     {
         string serializedWeaponFileName = Application.persistentDataPath + "/bodyInv.dat";
         BinaryFormatter bf = new BinaryFormatter();
@@ -170,7 +170,7 @@ public class Inventory : MonoBehaviour
         FileStream file = File.Create(serializedWeaponFileName);
         bf.Serialize(file, playerInventory.characterSystem);
         file.Close();
-    }
+    }*/
 
     AbilitySlots abilities;
     bool upadteSlotter()
