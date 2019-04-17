@@ -5,13 +5,15 @@ using UnityEngine;
 public class PortalPopup : MonoBehaviour
 {
     // Start is called before the first frame update
-    GameObject popup;
-	void Start(){
+    GameObject dungeonUI,popup;
+	/*void Start(){
 		popup = GameObject.Find("ExitPopup");
-		popup.SetActive(false);
-	}
+		//popup.SetActive(false);
+	}*/
 	public void OnTriggerEnter(Collider col){
 		Debug.Log("..................................................................................Collided portal");
+		dungeonUI = GameObject.Find("Dungeon UI");
+		popup = dungeonUI.transform.Find("ExitPopup").gameObject;
 		string nameOfOther = col.gameObject.name;
         if(nameOfOther.Equals("Player"))
         {
