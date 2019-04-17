@@ -4324,6 +4324,11 @@ PrefabInstance:
       propertyPath: m_FontData.m_MaxSize
       value: 80
       objectReference: {fileID: 0}
+    - target: {fileID: 4744659394863720531, guid: 4d9814102286b401dabb2acd96698c08,
+        type: 3}
+      propertyPath: m_Text
+      value: OpenPortal
+      objectReference: {fileID: 0}
     - target: {fileID: 4744659394668776556, guid: 4d9814102286b401dabb2acd96698c08,
         type: 3}
       propertyPath: m_AnchoredPosition.x
