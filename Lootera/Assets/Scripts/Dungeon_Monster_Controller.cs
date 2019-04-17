@@ -14,8 +14,8 @@ public class Dungeon_Monster_Controller : MonoBehaviour
     Animator anim;
     float attackRadius;
     public float visibleRadius = 20;
-    public float enemyMaxHealth = 100f;
-    public float enemyHealth = 100f;
+    public float enemyMaxHealth = (Level.level +2 )*100f;
+    public float enemyHealth;
     private PlayerHealth health;
     public Image healthBar;
     private Vector3 currentPostionOfEnemy;
@@ -25,6 +25,7 @@ public class Dungeon_Monster_Controller : MonoBehaviour
 
     private void Start()
     {
+        enemyHealth = enemyMaxHealth;
         controller = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
         Agent = GetComponent<NavMeshAgent>();
@@ -32,6 +33,7 @@ public class Dungeon_Monster_Controller : MonoBehaviour
         attackRadius = Agent.stoppingDistance;
         //print("Dungeon Monster in Start");
         health = FindObjectOfType<PlayerHealth>();
+        
        
 
     }

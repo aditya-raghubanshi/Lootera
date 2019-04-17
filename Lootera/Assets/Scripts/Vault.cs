@@ -15,12 +15,12 @@ public class Vault : MonoBehaviour
     void Start()
     {
         vaultPanel.gameObject.SetActive(false);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void openInventories()
