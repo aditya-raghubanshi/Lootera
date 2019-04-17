@@ -577,10 +577,35 @@ MonoBehaviour:
     indexItemInList: 999
     rarity: 0
     itemAttributes: []
-  - itemName: New Item
+  - itemName: Viking Sword
     itemID: 37
     itemDesc: 
-    itemIcon: {fileID: 0}
+    itemIcon: {fileID: 21300000, guid: 8d18fb6622cd06043aca65c2b32a252c, type: 3}
+    itemModel: {fileID: 1514839444299120, guid: 50f01c012ae8ef74fba128bda5f35715,
+      type: 3}
+    itemValue: 1
+    itemType: 1
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
+  - itemName: Healing Shot
+    itemID: 38
+    itemDesc: 
+    itemIcon: {fileID: 21300000, guid: e627e4cc799615c479cdc7b20754756c, type: 3}
+    itemModel: {fileID: 0}
+    itemValue: 1
+    itemType: 13
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
+  - itemName: Roll
+    itemID: 39
+    itemDesc: 
+    itemIcon: {fileID: 21300000, guid: 6481f264974f8804eb4a5059c1b36703, type: 3}
     itemModel: {fileID: 0}
     itemValue: 1
     itemType: 0
@@ -589,10 +614,22 @@ MonoBehaviour:
     indexItemInList: 999
     rarity: 0
     itemAttributes: []
-  - itemName: New Item
-    itemID: 38
+  - itemName: Magic Circle
+    itemID: 40
     itemDesc: 
-    itemIcon: {fileID: 0}
+    itemIcon: {fileID: 21300000, guid: 5869560fbad1f7843a917ec449036aba, type: 3}
+    itemModel: {fileID: 0}
+    itemValue: 1
+    itemType: 0
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
+  - itemName: Shield Bash
+    itemID: 41
+    itemDesc: 
+    itemIcon: {fileID: 21300000, guid: 6037fc21044713a4dafa4b219adfe142, type: 3}
     itemModel: {fileID: 0}
     itemValue: 1
     itemType: 0

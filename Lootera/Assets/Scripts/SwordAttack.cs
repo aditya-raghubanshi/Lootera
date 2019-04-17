@@ -19,7 +19,7 @@ public class SwordAttack : MonoBehaviour
             {
                 foreach(Dungeon_Monster_Controller skeleton in skeletons)
                 {
-                    skeleton.Damage(10);
+                    skeleton.Damage(20);
                 }
             }
         }
