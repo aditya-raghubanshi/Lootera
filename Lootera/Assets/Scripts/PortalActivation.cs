@@ -5,12 +5,15 @@ using UnityEngine;
 public class PortalActivation : MonoBehaviour
 {
 	public GameObject gameObjectToEnable;
-	GameObject player;
+	GameObject player,popup;
 	GameObject PortalCube1,PortalCube2,PortalCube3;
     // Start is called before the first frame update
     void Start()
     {
         //gameObjectToEnable.SetActive(true);
+		popup = GameObject.Find("ExitPopup");
+		popup.SetActive(false);
+		
 		player = GameObject.Find("Player");
 		int exitGateToBeEnabled = Random.Range(1,4);
 		GameObject ChildGameObject1 = gameObjectToEnable.transform.Find("Exit1").gameObject;//gameObjectToEnable.transform.GetChild(0).gameObject;
