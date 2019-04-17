@@ -8,7 +8,7 @@ public class RandomSelection : MonoBehaviour
     public void LoadRandomScene()
     {
         int index = Random.Range(1, 2);
-        SceneManager.LoadScene(index);
+        SceneManager.LoadScene(1);
         Debug.Log("Scene Loaded");
     }
 }
