@@ -15,28 +15,28 @@ public class Ability3Button : MonoBehaviour
     public Sprite magicCircle;
     public Sprite roll;
     Button button;
-    void Start()
+    void Update()
     {
         slots = FindObjectOfType<AbilitySlots>();
         ability3 = slots.GetAbility3();
         button = GetComponent<Button>();
-        Debug.Log(ability3);
+        Debug.Log("ability3:" + ability3);
 
         switch (ability3)
         {
             case 0:
                 button.GetComponent<Image>().sprite = defaultImage;
                 break;
-            case 1:
+            case 38:
                 button.GetComponent<Image>().sprite = healingShout;
                 break;
-            case 2:
+            case 41:
                 button.GetComponent<Image>().sprite = shieldBash;
                 break;
-            case 3:
+            case 39:
                 button.GetComponent<Image>().sprite = roll;
                 break;
-            case 4:
+            case 40:
                 button.GetComponent<Image>().sprite = magicCircle;
                 break;
         }
