@@ -13,14 +13,14 @@ public class AttackButton : MonoBehaviour
     public bool pressed = false;
     Movement movement;
     int count = 1;
-    public static int weaponID = 42;
+    public static int weaponID = 36;
 
     public void SlotWeapon(int weaponID)
     {
         //dragonblade = GameObject.Find("Dragonblade");
         //Bow = GameObject.Find("BOW");
-        Debug.Log(weaponID);
-        Debug.Log("Slotter called");
+        //Debug.Log(weaponID);
+        //Debug.Log("Slotter called");
         if(weaponID == 36)
         {
             Debug.Log(" BOW " + Bow.activeInHierarchy);
@@ -47,8 +47,8 @@ public class AttackButton : MonoBehaviour
         }
         else if( weaponID == 42)
         {
-            Debug.Log(" BOW " + Bow.activeInHierarchy);
-            Debug.Log(" dragonblade " + dragonblade.activeInHierarchy);
+            //Debug.Log(" BOW " + Bow.activeInHierarchy);
+            //Debug.Log(" dragonblade " + dragonblade.activeInHierarchy);
             if (!Bow.activeInHierarchy)
             Bow.SetActive(true);
             //dragonblade.SetActive(false);
@@ -109,7 +109,7 @@ public class AttackButton : MonoBehaviour
     }
     public void Update()
     {
-        Debug.Log(weaponID);
+        //Debug.Log(weaponID);
         SlotWeapon(weaponID);
     }
     public void attackfunc()

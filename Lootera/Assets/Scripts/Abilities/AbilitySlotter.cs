@@ -9,9 +9,9 @@ public class AbilitySlotter : MonoBehaviour
     void Start()
     {
         abilities = GetComponent<AbilitySlots>();
-        abilities.SetAbility1(1);
-        abilities.SetAbility2(4);
-        abilities.SetAbility3(3);
+        abilities.SetAbility1(38);
+        abilities.SetAbility2(39);
+        abilities.SetAbility3(40);
 
     }
 

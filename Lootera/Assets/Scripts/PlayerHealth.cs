@@ -76,7 +76,7 @@ public class PlayerHealth : MonoBehaviour
     IEnumerator DelayedDeath(int time)
     {
         yield return new WaitForSeconds(time);
-        Debug.Log("...................................................................delayed death");
+
         gameOver.SetActive(true);
     }
 }

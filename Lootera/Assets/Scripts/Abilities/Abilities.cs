@@ -47,7 +47,8 @@ public class Abilities : MonoBehaviour
     void Update()
     {
 
-        
+
+        Debug.Log("Ability3:" + ability3);
         animate.SetFloat("HealingShout", doHealingShout);
         doHealingShout = 0f;
         animate.SetFloat("ShieldBash", doShieldBash);
@@ -65,16 +66,16 @@ public class Abilities : MonoBehaviour
     {
         switch (ability1)
         {
-            case 1:
+            case 38:
                 HealingShout();
                 break;
-            case 2:
+            case 41:
                 ShieldBash();
                 break;
-            case 3:
+            case 39:
                 Roll();
                 break;
-            case 4:
+            case 40:
                 DoDamagingAura();
                 break;
         }
@@ -84,16 +85,16 @@ public class Abilities : MonoBehaviour
     {
         switch (ability2)
         {
-            case 1:
+            case 38:
                 HealingShout();
                 break;
-            case 2:
+            case 41:
                 ShieldBash();
                 break;
-            case 3:
+            case 39:
                 Roll();
                 break;
-            case 4:
+            case 40:
                 DoDamagingAura();
                 break;
         }
@@ -103,16 +104,17 @@ public class Abilities : MonoBehaviour
     {
         switch (ability3)
         {
-            case 1:
+            case 38:
                 HealingShout();
                 break;
-            case 2:
+            case 41:
                 ShieldBash();
                 break;
-            case 3:
+            case 39:
                 Roll();
                 break;
-            case 4:
+            case 40:
+                print("Pre damaging aura");
                 DoDamagingAura();
                 break;
         }
@@ -226,7 +228,8 @@ public class Abilities : MonoBehaviour
 
     public void DoDamagingAura()
     {
-        if(doDamagingAura == 0f) {
+        Debug.Log("....................Do Damaging Aura: true");
+        if (doDamagingAura == 0f) {
 
             doDamagingAura = 1f;
             InvokeRepeating("DamagingAura", 0f, 1f);

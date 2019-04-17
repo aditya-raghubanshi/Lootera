@@ -14,12 +14,16 @@ public class Ability2Button : MonoBehaviour
     public Sprite magicCircle;
     public Sprite roll;
     Button button;
-    void Update()
+    void Start()
     {
         slots = FindObjectOfType<AbilitySlots>();
         ability2 = slots.GetAbility2();
         button = GetComponent<Button>();
-        Debug.Log("ability2:" + ability2);
+    }
+    void Update()
+    {
+        
+        //Debug.Log("ability2:" + ability2);
 
         switch (ability2)
         {

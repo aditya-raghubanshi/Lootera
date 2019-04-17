@@ -41,7 +41,7 @@ public class Minotaur_Controller : MonoBehaviour
     {
         Vector3 PlayerPosition = GameObject.Find("Player").transform.position;
         float dist = Vector3.Distance(transform.position, PlayerPosition);
-        print("distance " + dist);
+
         // When are we walking? - when we can see him and we are not attacking;
         if (dist < visibleRadius)
         {
