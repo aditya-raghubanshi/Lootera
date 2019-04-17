@@ -13,7 +13,7 @@ public class AttackButton : MonoBehaviour
     public bool pressed = false;
     Movement movement;
     int count = 1;
-    public static int weaponID = 1;
+    public static int weaponID = 2;
 
     public void SlotWeapon(int weaponID)
     {
