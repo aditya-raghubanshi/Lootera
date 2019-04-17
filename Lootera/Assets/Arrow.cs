@@ -5,8 +5,6 @@ using UnityEngine;
 public class Arrow : MonoBehaviour
 {
     Rigidbody myBody;
-    private float lifetimer = 20f;
-    private float timer;
     private bool hitSomething = false;
     Dungeon_Monster_Controller[] skeletons;
 
@@ -20,24 +18,17 @@ public class Arrow : MonoBehaviour
     // Update is called once per frame
     private void Update()
     {
-        timer += Time.deltaTime;
-        if(timer >= lifetimer)
-        {
-            //Destroy(gameObject);
-        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.collider.tag != "DungeonSkeleton_demo"){
-            stick();    
-            Debug.Log("Not Skeleton");
-        }
-        else{
-            stick();
-            Debug.Log(" Skeleton");
-        }
-
+        stick();
+        StartCoroutine(KillArrow(1f));
+    }
+    IEnumerator KillArrow(float sec)
+    {
+        yield return new WaitForSeconds(sec);
+        Destroy(gameObject);
     }
     private void stick()
     {

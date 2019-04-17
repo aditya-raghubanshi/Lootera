@@ -21,6 +21,7 @@ public class PortalActivation : MonoBehaviour
 		GameObject FlameGameObject4 = gameObjectToEnable.transform.Find("Exit2Flame2").gameObject;//gameObjectToEnable.transform.GetChild(0).gameObject;
 		GameObject FlameGameObject5 = gameObjectToEnable.transform.Find("Exit3Flame1").gameObject;//gameObjectToEnable.transform.GetChild(1).gameObject;
 		GameObject FlameGameObject6 = gameObjectToEnable.transform.Find("Exit3Flame2").gameObject;
+		
 		if(exitGateToBeEnabled==1){
 			//player.transform.position = new Vector3(-0.52f, 0.54f, 0f);
 			//player.transform.position = new Vector3(-70f,0.54f,150f);
