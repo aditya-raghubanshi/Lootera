@@ -194,7 +194,7 @@ public class AttackButton : MonoBehaviour
             cam2.transform.rotation = Bow.transform.rotation * Quaternion.Euler(-180, 155, 0);
             cam3.transform.rotation = Bow.transform.rotation * Quaternion.Euler(-180, 205, 0);
             Drawed = 1;
-            StartCoroutine(ExecuteAfterTime(1f));
+            StartCoroutine(ExecuteAfterTime(0.5f));
 
         }
 
