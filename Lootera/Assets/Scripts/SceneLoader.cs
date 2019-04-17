@@ -12,15 +12,15 @@ public class SceneLoader : MonoBehaviour
 
     public void LoadLevel()
     {
-        sceneIndex = Random.Range(1, 2);
+        sceneIndex = Random.Range(1, 3);
       //  SceneManager.LoadScene(sceneIndex);
         Debug.Log("Scene Loaded");
         StartCoroutine(this.LoadAsynchronously(sceneIndex));
     }
 
-    IEnumerator LoadAsynchronously(int sceneIndex)
+    IEnumerator LoadAsynchronously(int scene)
      { 
-        AsyncOperation operation = SceneManager.LoadSceneAsync(sceneIndex);
+        AsyncOperation operation = SceneManager.LoadSceneAsync(scene);
         loadingScreen.SetActive(true);
 
         while(!operation.isDone)
