@@ -18,8 +18,8 @@ EditorBuildSettings:
     path: Assets/Scenes/SampleScene.unity
     guid: d1d534e77e7cd004faa85b04841f7d35
   - enabled: 1
-    path: Assets/Scenes/DummyMap2.unity
-    guid: c2b9778ffe5f44e5a8740e232d675936
+    path: Assets/Scenes/TempleScene.unity
+    guid: 716c448101e8d3842aa2e95254f9c29a
   - enabled: 1
     path: Assets/Scenes/GameOver.unity
     guid: e47b36014b8f57a479183343547c55ac
