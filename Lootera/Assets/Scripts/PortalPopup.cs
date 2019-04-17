@@ -22,7 +22,7 @@ public class PortalPopup : MonoBehaviour
 	
 	}
 	
-	/*public void OnTriggerExit(Collider col){
+	public void OnTriggerExit(Collider col){
 		string nameOfOther = col.gameObject.name;
         if(nameOfOther.Equals("Player"))
         {
@@ -33,5 +33,5 @@ public class PortalPopup : MonoBehaviour
 	IEnumerator popdown(int sec){
 		yield return new WaitForSeconds(sec);
 		popup.SetActive(false);
-	}*/
+	}
 }
