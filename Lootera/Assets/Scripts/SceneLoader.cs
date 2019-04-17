@@ -8,9 +8,13 @@ public class SceneLoader : MonoBehaviour
 
     public GameObject loadingScreen;
     public Slider slider;
+    public int sceneIndex;
 
     public void LoadLevel(int sceneIndex)
     {
+        sceneIndex = Random.Range(1, 5);
+      //  SceneManager.LoadScene(sceneIndex);
+        Debug.Log("Scene Loaded");
         StartCoroutine(LoadAsynchronously(sceneIndex));
     }
 

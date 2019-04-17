@@ -31,8 +31,7 @@ public class SwordAttack : MonoBehaviour
             if (button.pressed == true)
             {
                 foreach (Minotaur_Controller minotaur in minotaurs)
-                {
-                    
+                {   
                         minotaur.Damage(damage);
                     
                 }
