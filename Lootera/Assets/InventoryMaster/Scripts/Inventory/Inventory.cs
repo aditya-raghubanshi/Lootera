@@ -159,7 +159,8 @@ public class Inventory : MonoBehaviour
         return false;
     }
     
-    /*public void SaveSerializedBodyInv()
+
+/*    public void SaveSerializedBodyInv()
     {
         string serializedWeaponFileName = Application.persistentDataPath + "/bodyInv.dat";
         BinaryFormatter bf = new BinaryFormatter();
