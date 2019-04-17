@@ -40,7 +40,8 @@ public class Dungeon_Monster_Controller : MonoBehaviour
         float dist = Vector3.Distance(transform.position, PlayerPosition);
         //print("distance " + dist);
         // When are we walking? - when we can see him and we are not attacking;
-        if(dist<visibleRadius)
+        anim.SetFloat("Hit", 0f);
+        if (dist<visibleRadius)
         {
             //print("Inside Visible Radius");
             // when to stop walking when we are walking.
@@ -116,6 +117,7 @@ public class Dungeon_Monster_Controller : MonoBehaviour
     public void Damage(float damage)
     {
         enemyHealth = enemyHealth - damage;
+        anim.SetFloat("Hit", 1f);
         if (enemyHealth <= 0f)
         {
             Destroy(gameObject);
