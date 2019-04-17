@@ -150,11 +150,12 @@ public class Inventory : MonoBehaviour
 
     public bool closeInventory()
     {
+        Debug.Log("closeInventory()...");
         if (upadteSlotter())
         {
-            SaveInvToFile();
             this.gameObject.SetActive(false);
             checkIfAllInventoryClosed();
+            SaveInvToFile();
             return true;
         }
         return false;
@@ -199,7 +200,7 @@ public class Inventory : MonoBehaviour
     AbilitySlots abilities;
     bool upadteSlotter()
     {
-        if(!characterSystem())
+        if(!characterSystem()) //|| (characterSystem() && this.getItemList().Count == 0))
         {
             return true;
         }
