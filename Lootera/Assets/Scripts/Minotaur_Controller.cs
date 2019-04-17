@@ -16,8 +16,8 @@ public class Minotaur_Controller : MonoBehaviour
     Animator anim;
     float attackRadius;
     public float visibleRadius = 20;
-    public float enemyMaxHealth = 100f;
-    public float enemyHealth = 100f;
+    public float enemyMaxHealth = (Level.level +2 )*100f;
+    public float enemyHealth;
     private PlayerHealth health;
     public Image healthBar;
     private Vector3 currentPostionOfEnemy;
@@ -25,6 +25,7 @@ public class Minotaur_Controller : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        enemyHealth = enemyMaxHealth;
         controller = GetComponent<CharacterController>();
         anim = GetComponent<Animator>();
         Agent = GetComponent<NavMeshAgent>();

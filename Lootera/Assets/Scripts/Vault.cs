@@ -9,20 +9,25 @@ public class Vault : MonoBehaviour
     public Inventory vaultMenu;
     public Inventory backpackMenu;
     public Inventory bodyMenu;
+    public GameObject vaultPanel;
 
     // Start is called before the first frame update
     void Start()
     {
+        vaultPanel.gameObject.SetActive(false);
+        
     }
 
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void openInventories()
     {
+        Debug.Log("opening inv");
+        vaultPanel.gameObject.SetActive(true);
+
         LoadSerializedBackpackInv();
         LoadSerializedBodyInv();
         LoadSerializedVaultInv();
@@ -35,12 +40,17 @@ public class Vault : MonoBehaviour
     public void closeInventories()
     {
         if (bodyMenu.closeInventory()) {
+            vaultPanel.gameObject.SetActive(false);
+            Debug.Log("closing all...");
             SaveSerializedBackpackInv();
             SaveSerializedBodyInv();
             SaveSerializedVaultInv();
 
+            Debug.Log("step 2...");
             vaultMenu.closeInventory();
             backpackMenu.closeInventory();
+
+            Debug.Log("step 3...");
         }
     }
 
@@ -55,10 +65,10 @@ public class Vault : MonoBehaviour
             {
                 //inventory = (List<WeaponSaveData>)bf.Deserialize(fileStream);
                 List<int> inv = (List<int>)bf.Deserialize(fileStream);
-                vaultMenu.deleteAllItems();
+                backpackMenu.deleteAllItems();
                 for (int i = 0; i < inv.Count; i++)
                 {
-                    vaultMenu.addItemToInventory(inv[i]);
+                    backpackMenu.addItemToInventory(inv[i]);
                 }
             }
 
@@ -68,6 +78,14 @@ public class Vault : MonoBehaviour
         {
             Debug.Log("Loading Data failed. File " + serializedWeaponFileName + "doesn't exist");
         }
+    }
+
+    private void addBasicInventory()
+    {
+        bodyMenu.addItemToInventory(36);
+        bodyMenu.addItemToInventory(38);
+        bodyMenu.addItemToInventory(39);
+        bodyMenu.addItemToInventory(40);
     }
 
     private void LoadSerializedBodyInv()
@@ -80,11 +98,16 @@ public class Vault : MonoBehaviour
             if (fileStream.Length != 0)
             {
                 //inventory = (List<WeaponSaveData>)bf.Deserialize(fileStream);
-                backpackMenu.deleteAllItems();
+                bodyMenu.deleteAllItems();
                 List<int> inv = (List<int>)bf.Deserialize(fileStream);
+                Debug.Log(inv.Count);
+                if(inv.Count == 0)
+                {
+                    addBasicInventory();
+                }
                 for (int i = 0; i < inv.Count; i++)
                 {
-                    backpackMenu.addItemToInventory(inv[i]);
+                    bodyMenu.addItemToInventory(inv[i]);
                 }
             }
 
@@ -92,6 +115,7 @@ public class Vault : MonoBehaviour
         }
         else
         {
+            addBasicInventory();
             Debug.Log("Loading Data failed. File " + serializedWeaponFileName + "doesn't exist");
         }
     }
@@ -155,6 +179,7 @@ public class Vault : MonoBehaviour
             File.Delete(serializedWeaponFileName);
         }
         FileStream file = File.Create(serializedWeaponFileName);
+        Debug.Log(getIDs(bodyMenu).Count);
         bf.Serialize(file, getIDs(bodyMenu));
         file.Close();
     }

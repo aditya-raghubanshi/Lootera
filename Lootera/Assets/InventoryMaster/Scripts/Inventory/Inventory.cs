@@ -150,32 +150,60 @@ public class Inventory : MonoBehaviour
 
     public bool closeInventory()
     {
+        Debug.Log("closeInventory()...");
         if (upadteSlotter())
         {
             this.gameObject.SetActive(false);
             checkIfAllInventoryClosed();
+            SaveInvToFile();
             return true;
         }
         return false;
     }
-    
 
-/*    public void SaveSerializedBodyInv()
+    public List<int> getIDs()
     {
-        string serializedWeaponFileName = Application.persistentDataPath + "/bodyInv.dat";
-        BinaryFormatter bf = new BinaryFormatter();
-        if (File.Exists(serializedWeaponFileName))
+        List<int> IDs = new List<int>();
+        for (int i = 0; i < this.getItemList().Count; i++)
         {
-            File.Delete(serializedWeaponFileName);
+            IDs.Add(this.getItemList()[i].itemID);
         }
-        FileStream file = File.Create(serializedWeaponFileName);
-        bf.Serialize(file, playerInventory.characterSystem);
-        file.Close();
-    }*/
+        return IDs;
+    }
+
+    public void SaveInvToFile()
+    {
+        if (characterSystem())
+        {
+            SaveSerializedInv("/bodyInv.dat");
+        }
+        else if(mainInventory)
+        {
+            SaveSerializedInv("/backpackInv.dat");
+        }
+
+    }
+
+    public void SaveSerializedInv(string filename)
+    {
+        string serializedWeaponFileName = Application.persistentDataPath + filename;
+            BinaryFormatter bf = new BinaryFormatter();
+            if (File.Exists(serializedWeaponFileName))
+            {
+                File.Delete(serializedWeaponFileName);
+            }
+            FileStream file = File.Create(serializedWeaponFileName);
+            bf.Serialize(file, getIDs());
+            file.Close();
+    }
 
     AbilitySlots abilities;
     bool upadteSlotter()
     {
+        if(!characterSystem()) //|| (characterSystem() && this.getItemList().Count == 0))
+        {
+            return true;
+        }
         if (characterSystem() && this.getItemList().Count==4)
         {
             abilities = GetComponent<AbilitySlots>();
@@ -183,9 +211,10 @@ public class Inventory : MonoBehaviour
             for (int i = 0; i < bodyItems.Count; i++)
             {
                 Debug.Log(bodyItems[i].itemID);
-                if (i == 0) { abilities.SetAbility1(bodyItems[i].itemID); }
-                else if (i == 1) { abilities.SetAbility2(bodyItems[i].itemID); }
-                else if (i == 2) { abilities.SetAbility3(bodyItems[i].itemID); }
+                if (i == 0) { AttackButton.weaponID = bodyItems[i].itemID; }
+                else if (i == 1) { AbilitySlots.ability1 = bodyItems[i].itemID; }
+                else if (i == 2) { AbilitySlots.ability2 = bodyItems[i].itemID; }
+                else if (i == 3) { AbilitySlots.ability3 = bodyItems[i].itemID; }
             }
             return true;
         }
@@ -223,10 +252,7 @@ public class Inventory : MonoBehaviour
 
         }
     }
-
-
-
-
+    
     public void ConsumeItem(Item item)
     {
         if (ItemConsumed != null)
