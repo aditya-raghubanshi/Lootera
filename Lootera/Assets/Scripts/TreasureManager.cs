@@ -26,8 +26,10 @@ public class TreasureManager : MonoBehaviour
 
     void Start()
     {
-        LoadSerializedBackpackInv();
         LoadSerializedBodyInv();
+        LoadSerializedBackpackInv();
+        playerInventory.characterSystemInventory.closeInventory();
+        playerInventory.mainInventory.closeInventory();
         interaction = FindObjectOfType<InteractionButton>();
         player = GameObject.Find("Player");
         //interactionTransform = this.transform;
