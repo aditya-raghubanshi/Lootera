@@ -9,7 +9,7 @@ using System;
 public class TreasureManager : MonoBehaviour
 {
     [SerializeField] public GameObject treasureChest = null;
-    int[] weapons = new int[] {36, 36, 37, 37};                // 36 viking sword, 37 dragonblade
+    int[] weapons = new int[] {36, 37, 38, 39};                // 36 dragonblade, 37 viking sword, 38 healing shot
     //GameObject[] weaponObjects;                // The weapon objects spawned.
     private Vector3[] weaponPositions;
     [SerializeField] public float spawnTime = 4f;            // How long between each spawn.

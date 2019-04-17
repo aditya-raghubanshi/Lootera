@@ -22,8 +22,8 @@ public class Arrow : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        stick();
-        StartCoroutine(KillArrow(1f));
+        
+        
     }
     IEnumerator KillArrow(float sec)
     {
@@ -46,5 +46,8 @@ public class Arrow : MonoBehaviour
                 }
             
         }
+        Debug.Log(" Arrow hit");
+        stick();
+        StartCoroutine(KillArrow(1f));
     }
 }

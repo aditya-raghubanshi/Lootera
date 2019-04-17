@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyDamage : MonoBehaviour
 {
-    public float dmgAmount = 10f;
+    public float dmgAmount;
     private PlayerHealth health;
 
     public AudioSource source;
@@ -13,11 +13,13 @@ public class EnemyDamage : MonoBehaviour
     void Start()
     {
         source = GetComponent<AudioSource>();
+        dmgAmount = (Level.level + 1) * 10f;
 
 
     }
     public void DamageEvent()
     {
+        
         health = FindObjectOfType<PlayerHealth>();
         Vector3 PlayerPosition = GameObject.Find("Player").transform.position;
         Vector3 myPostion = this.transform.position;

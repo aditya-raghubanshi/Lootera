@@ -19,7 +19,7 @@ public class PlayerHealth : MonoBehaviour
     {
         healthbar = GetComponent<Image>();
         health = 100f;
-        maxHealth = 100f;
+        maxHealth = 100;
         resistance = 0f;
         player = GameObject.Find("Player");
         animate = player.GetComponent<Animator>();
