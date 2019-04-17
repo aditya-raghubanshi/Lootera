@@ -26,16 +26,16 @@ public class Ability2Button : MonoBehaviour
             case 0:
                 button.GetComponent<Image>().sprite = defaultImage;
                 break;
-            case 1:
+            case 38:
                 button.GetComponent<Image>().sprite = healingShout;
                 break;
-            case 2:
+            case 41:
                 button.GetComponent<Image>().sprite = shieldBash;
                 break;
-            case 3:
+            case 39:
                 button.GetComponent<Image>().sprite = roll;
                 break;
-            case 4:
+            case 40:
                 button.GetComponent<Image>().sprite = magicCircle;
                 break;
         }
