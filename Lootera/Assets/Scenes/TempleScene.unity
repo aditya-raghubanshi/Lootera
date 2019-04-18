@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 903337018}
-  m_IndirectSpecularColor: {r: 0.5111989, g: 0.5207208, b: 0.49743927, a: 1}
+  m_IndirectSpecularColor: {r: 0.51120096, g: 0.5207224, b: 0.4974411, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -20665,6 +20665,14 @@ PrefabInstance:
     - target: {fileID: 100000, guid: 087e88aa1babfae4c9caff61afd3c6e3, type: 3}
       propertyPath: m_Name
       value: D_Ruins_Piece_3 (10)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 087e88aa1babfae4c9caff61afd3c6e3, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 40
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 087e88aa1babfae4c9caff61afd3c6e3, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 087e88aa1babfae4c9caff61afd3c6e3, type: 3}
       propertyPath: m_LocalPosition.x
