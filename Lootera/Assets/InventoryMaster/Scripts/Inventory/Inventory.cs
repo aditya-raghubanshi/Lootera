@@ -225,7 +225,9 @@ public class Inventory : MonoBehaviour
     {
         this.gameObject.SetActive(true);
         if (InventoryOpen != null)
+        {
             InventoryOpen();
+        }
     }
 
     public void checkIfAllInventoryClosed()
