@@ -564,7 +564,7 @@ MonoBehaviour:
     indexItemInList: 999
     rarity: 0
     itemAttributes: []
-  - itemName: Dragonblade1
+  - itemName: Dragonblade
     itemID: 36
     itemDesc: 
     itemIcon: {fileID: 21300000, guid: 8d7a7889f6f2d3946a29f6e4b8179f43, type: 3}
@@ -645,6 +645,174 @@ MonoBehaviour:
     itemModel: {fileID: 0}
     itemValue: 1
     itemType: 1
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
+  - itemName: Dragonblade Rare
+    itemID: 43
+    itemDesc: 
+    itemIcon: {fileID: 21300000, guid: 8d7a7889f6f2d3946a29f6e4b8179f43, type: 3}
+    itemModel: {fileID: 0}
+    itemValue: 1
+    itemType: 1
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
+  - itemName: 'Viking Sword Rare '
+    itemID: 44
+    itemDesc: 
+    itemIcon: {fileID: 21300000, guid: 8d18fb6622cd06043aca65c2b32a252c, type: 3}
+    itemModel: {fileID: 0}
+    itemValue: 1
+    itemType: 1
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
+  - itemName: Healing Shot Rare
+    itemID: 45
+    itemDesc: 
+    itemIcon: {fileID: 21300000, guid: e627e4cc799615c479cdc7b20754756c, type: 3}
+    itemModel: {fileID: 0}
+    itemValue: 1
+    itemType: 13
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
+  - itemName: Roll Rare
+    itemID: 46
+    itemDesc: 
+    itemIcon: {fileID: 21300000, guid: 6481f264974f8804eb4a5059c1b36703, type: 3}
+    itemModel: {fileID: 0}
+    itemValue: 1
+    itemType: 13
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
+  - itemName: Magic Circle Rare
+    itemID: 47
+    itemDesc: 
+    itemIcon: {fileID: 21300000, guid: 5869560fbad1f7843a917ec449036aba, type: 3}
+    itemModel: {fileID: 0}
+    itemValue: 1
+    itemType: 13
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
+  - itemName: Shield Bash Rare
+    itemID: 48
+    itemDesc: 
+    itemIcon: {fileID: 21300000, guid: 6037fc21044713a4dafa4b219adfe142, type: 3}
+    itemModel: {fileID: 0}
+    itemValue: 1
+    itemType: 13
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
+  - itemName: Bow Rare
+    itemID: 49
+    itemDesc: 
+    itemIcon: {fileID: 21300000, guid: fe403a17b83e26d418073d2720f0e3c0, type: 3}
+    itemModel: {fileID: 0}
+    itemValue: 1
+    itemType: 1
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
+  - itemName: Dragonblade Legendary
+    itemID: 50
+    itemDesc: 
+    itemIcon: {fileID: 21300000, guid: 8d7a7889f6f2d3946a29f6e4b8179f43, type: 3}
+    itemModel: {fileID: 0}
+    itemValue: 1
+    itemType: 1
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
+  - itemName: Viking Sword Legendary
+    itemID: 51
+    itemDesc: 
+    itemIcon: {fileID: 21300000, guid: 8d18fb6622cd06043aca65c2b32a252c, type: 3}
+    itemModel: {fileID: 0}
+    itemValue: 1
+    itemType: 1
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
+  - itemName: Healing Shot Legendary
+    itemID: 52
+    itemDesc: 
+    itemIcon: {fileID: 21300000, guid: e627e4cc799615c479cdc7b20754756c, type: 3}
+    itemModel: {fileID: 0}
+    itemValue: 1
+    itemType: 13
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
+  - itemName: Roll Legendary
+    itemID: 53
+    itemDesc: 
+    itemIcon: {fileID: 21300000, guid: 6481f264974f8804eb4a5059c1b36703, type: 3}
+    itemModel: {fileID: 0}
+    itemValue: 1
+    itemType: 13
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
+  - itemName: Magic Circle Legendary
+    itemID: 54
+    itemDesc: 
+    itemIcon: {fileID: 21300000, guid: 5869560fbad1f7843a917ec449036aba, type: 3}
+    itemModel: {fileID: 0}
+    itemValue: 1
+    itemType: 13
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
+  - itemName: Shield Bash Legendary
+    itemID: 55
+    itemDesc: 
+    itemIcon: {fileID: 21300000, guid: 6037fc21044713a4dafa4b219adfe142, type: 3}
+    itemModel: {fileID: 0}
+    itemValue: 1
+    itemType: 13
+    itemWeight: 0
+    maxStack: 1
+    indexItemInList: 999
+    rarity: 0
+    itemAttributes: []
+  - itemName: Bow Legendary
+    itemID: 56
+    itemDesc: 
+    itemIcon: {fileID: 21300000, guid: ea8c1dc6581654b4a9e7d6257135fbe9, type: 3}
+    itemModel: {fileID: 0}
+    itemValue: 1
+    itemType: 13
     itemWeight: 0
     maxStack: 1
     indexItemInList: 999

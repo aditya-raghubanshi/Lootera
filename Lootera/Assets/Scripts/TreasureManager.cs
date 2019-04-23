@@ -9,18 +9,21 @@ using System;
 public class TreasureManager : MonoBehaviour
 {
     [SerializeField] public GameObject treasureChest = null;
-    List<int> weapons = new List<int>() {42, 42, 42, 42};                // 36 dragonblade, 37 viking sword, 38 healing shot, 42 bow
+    List<int> weapons = new List<int>() {36, 37, 38, 39, 40, 41, 42, 44, 47, 56};                // 36 dragonblade, 37 viking sword, 38 healing shot, 39 roll, 40 magic circle, 41 shield, 42 bow
+    List<int> weaponsRare = new List<int>() {43, 44, 45, 46, 47, 48, 49, 36, 37, 52};                // rare
+    List<int> weaponsLegendary = new List<int>() {50, 51, 52, 53, 54, 55, 56, 38, 48, 49};                // legendary
     List<GameObject> weaponObjects = new List<GameObject>();                // The weapon objects spawned.
     private Vector3[] weaponPositions;
     [SerializeField] public float spawnTime = 4f;            // How long between each spawn.
     [SerializeField] public float SpawnRadius = 5000;
-    [SerializeField] public int spawnNumber = 4;
+    int numberOfChests = 4;
     static int weaponIndex = 0;
     public PlayerInventory playerInventory;
     public GameObject vaultPanel;
     public PauseManager pauseManager;
+    public Inventory chestMenu;
 
-    public static List<int> inventory = new List<int>();
+    //public static List<int> inventory = new List<int>();
 
     protected InteractionButton interaction;
     protected GameObject player;
@@ -40,7 +43,7 @@ public class TreasureManager : MonoBehaviour
         // Call the Spawn function after a delay of the spawnTime and then continue to call after the same amount of time.
         weaponPositions = new Vector3[weapons.Count];
         //weaponObjects = new GameObject[weapons.Length];
-        for (int i = 0; i < spawnNumber; i++)
+        for (int i = 0; i < numberOfChests; i++)
         {
             Spawn();
         }
@@ -87,16 +90,50 @@ public class TreasureManager : MonoBehaviour
         vaultPanel.SetActive(false);
         playerInventory.characterSystemInventory.closeInventory();
         playerInventory.mainInventory.closeInventory();
+        if(chestMenu)
+        {
+            chestMenu.closeInventory();
+        }
         pauseManager.Resume();
+    }
+
+    private void addItemToChestInventory(List<int> items)
+    {
+        System.Random rnd = new System.Random();
+
+        chestMenu.addItemToInventory(items[rnd.Next(0, 10)]);
+        chestMenu.addItemToInventory(items[rnd.Next(0, 10)]);
+        chestMenu.addItemToInventory(items[rnd.Next(0, 10)]);
+    }
+
+    private void openChest()
+    {
+        chestMenu.deleteAllItems();
+
+        if (Level.level >=1 && Level.level <= 3)
+        {
+            addItemToChestInventory(weapons);
+        }
+        else if(Level.level >= 4 && Level.level <= 7)
+        {
+            addItemToChestInventory(weaponsRare);
+        }
+        else
+        {
+            addItemToChestInventory(weaponsLegendary);
+        }
+        chestMenu.openInventory();
     }
 
     public void Interact(int weaponIndex)
     {
         Debug.Log("Interacting with Treausre");
         //inventory.Add(new WeaponSaveData(weapons[weaponIndex].ToString()));
-        inventory.Add(weapons[weaponIndex]);
-        playerInventory.addItemToMainInventory(weapons[weaponIndex], 1);
+        //inventory.Add(weapons[weaponIndex]);
+        //playerInventory.addItemToMainInventory(weapons[weaponIndex], 1);
         openInventories();
+        openChest();
+        
 
         System.Random rnd = new System.Random();
         Gems.gems = Level.level + rnd.Next(1, 11);
@@ -140,7 +177,7 @@ public class TreasureManager : MonoBehaviour
         }
     }
 
-    public void SaveSerializedBackpackInv()
+    /*public void SaveSerializedBackpackInv()
     {
         string serializedWeaponFileName = Application.persistentDataPath + "/backpackInv.dat";
         BinaryFormatter bf = new BinaryFormatter();
@@ -151,7 +188,7 @@ public class TreasureManager : MonoBehaviour
         FileStream file = File.Create(serializedWeaponFileName);
         bf.Serialize(file, inventory);
         file.Close();
-    }
+    }*/
 
     private void LoadSerializedBackpackInv()
     {
@@ -163,7 +200,7 @@ public class TreasureManager : MonoBehaviour
             if (fileStream.Length != 0)
             {
                 //inventory = (List<WeaponSaveData>)bf.Deserialize(fileStream);
-                inventory = (List<int>)bf.Deserialize(fileStream);
+                List<int> inventory = (List<int>)bf.Deserialize(fileStream);
                 playerInventory.mainInventory.deleteAllItems();
                 for (int i = 0; i < inventory.Count; i++)
                 {

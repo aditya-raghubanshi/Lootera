@@ -76,6 +76,33 @@ public class Abilities : MonoBehaviour
                 Roll();
                 break;
             case 40:
+                print("Pre damaging aura");
+                DoDamagingAura();
+                break;
+            case 45:
+                HealingShout();
+                break;
+            case 48:
+                ShieldBash();
+                break;
+            case 46:
+                Roll();
+                break;
+            case 47:
+                print("Pre damaging aura");
+                DoDamagingAura();
+                break;
+            case 52:
+                HealingShout();
+                break;
+            case 55:
+                ShieldBash();
+                break;
+            case 56:
+                Roll();
+                break;
+            case 57:
+                print("Pre damaging aura");
                 DoDamagingAura();
                 break;
         }
@@ -95,6 +122,33 @@ public class Abilities : MonoBehaviour
                 Roll();
                 break;
             case 40:
+                print("Pre damaging aura");
+                DoDamagingAura();
+                break;
+            case 45:
+                HealingShout();
+                break;
+            case 48:
+                ShieldBash();
+                break;
+            case 46:
+                Roll();
+                break;
+            case 47:
+                print("Pre damaging aura");
+                DoDamagingAura();
+                break;
+            case 52:
+                HealingShout();
+                break;
+            case 55:
+                ShieldBash();
+                break;
+            case 56:
+                Roll();
+                break;
+            case 57:
+                print("Pre damaging aura");
                 DoDamagingAura();
                 break;
         }
@@ -114,6 +168,32 @@ public class Abilities : MonoBehaviour
                 Roll();
                 break;
             case 40:
+                print("Pre damaging aura");
+                DoDamagingAura();
+                break;
+            case 45:
+                HealingShout();
+                break;
+            case 48:
+                ShieldBash();
+                break;
+            case 46:
+                Roll();
+                break;
+            case 47:
+                print("Pre damaging aura");
+                DoDamagingAura();
+                break;
+            case 52:
+                HealingShout();
+                break;
+            case 55:
+                ShieldBash();
+                break;
+            case 56:
+                Roll();
+                break;
+            case 57:
                 print("Pre damaging aura");
                 DoDamagingAura();
                 break;

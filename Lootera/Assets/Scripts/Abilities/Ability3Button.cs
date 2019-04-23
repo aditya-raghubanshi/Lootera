@@ -43,6 +43,30 @@ public class Ability3Button : MonoBehaviour
             case 40:
                 button.GetComponent<Image>().sprite = magicCircle;
                 break;
+            case 45:
+                button.GetComponent<Image>().sprite = healingShout;
+                break;
+            case 48:
+                button.GetComponent<Image>().sprite = shieldBash;
+                break;
+            case 46:
+                button.GetComponent<Image>().sprite = roll;
+                break;
+            case 47:
+                button.GetComponent<Image>().sprite = magicCircle;
+                break;
+            case 52:
+                button.GetComponent<Image>().sprite = healingShout;
+                break;
+            case 55:
+                button.GetComponent<Image>().sprite = shieldBash;
+                break;
+            case 56:
+                button.GetComponent<Image>().sprite = roll;
+                break;
+            case 57:
+                button.GetComponent<Image>().sprite = magicCircle;
+                break;
         }
         // Add more cases as we add new Abilities
     }
