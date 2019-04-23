@@ -6,7 +6,7 @@ public class SwordAttack : MonoBehaviour
 {
     // Start is called before the first frame update
     MeshCollider mesh;
-    public float damage = 10f;
+    public float damage = 50f;
     Dungeon_Monster_Controller[] skeletons;
     Minotaur_Controller[] minotaurs;
 

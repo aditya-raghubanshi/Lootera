@@ -120,6 +120,7 @@ public class Dungeon_Monster_Controller : MonoBehaviour
     public void Damage(float damage)
     {
         enemyHealth = enemyHealth - damage;
+        Debug.Log("Skeleton Damage: " + damage);
         anim.SetFloat("Hit", 1f);
         if (enemyHealth <= 0f)
         {
@@ -131,7 +132,7 @@ public class Dungeon_Monster_Controller : MonoBehaviour
             anim.SetBool("running", false);
             anim.SetInteger("condition", 0);
             anim.SetBool("attacking", false);
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 

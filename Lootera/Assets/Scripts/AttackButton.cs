@@ -23,8 +23,8 @@ public class AttackButton : MonoBehaviour
         //Debug.Log("Slotter called");
         if(weaponID == 36 || weaponID == 43 || weaponID == 50)
         {
-            Debug.Log(" BOW " + Bow.activeInHierarchy);
-            Debug.Log(" dragonblade " + dragonblade.activeInHierarchy);
+            //Debug.Log(" BOW " + Bow.activeInHierarchy);
+            //Debug.Log(" dragonblade " + dragonblade.activeInHierarchy);
         
             if (!dragonblade.activeInHierarchy)
             {
@@ -93,7 +93,7 @@ public class AttackButton : MonoBehaviour
     public void attackcall()
     {
         
-        Debug.Log(count);
+        //Debug.Log(count);
         if (count == 1)
         {
             attackfunc();
@@ -114,7 +114,7 @@ public class AttackButton : MonoBehaviour
     }
     public void attackfunc()
     {
-        Debug.Log("Called 1");
+        //Debug.Log("Called 1");
         player = GameObject.Find("Player");
         animate = player.GetComponent<Animator>();
         Movement movement = player.GetComponent<Movement>();

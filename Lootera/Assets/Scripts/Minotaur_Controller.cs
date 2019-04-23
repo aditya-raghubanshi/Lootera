@@ -120,13 +120,15 @@ public class Minotaur_Controller : MonoBehaviour
     public void Damage(float damage)
     {
         enemyHealth = enemyHealth - damage;
+        Debug.Log("Mino damaged");
+        Debug.Log(damage);
         if (enemyHealth <= 0f)
         {
 
             anim.SetBool("running", false);
             anim.SetInteger("condition", 3);
             anim.SetBool("attacking", false);
-            //Destroy(gameObject);
+            Destroy(gameObject);
         }
     }
 
