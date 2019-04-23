@@ -48,7 +48,7 @@ public class Abilities : MonoBehaviour
     {
 
 
-        Debug.Log("Ability3:" + ability3);
+        //Debug.Log("Ability3:" + ability3);
         animate.SetFloat("HealingShout", doHealingShout);
         doHealingShout = 0f;
         animate.SetFloat("ShieldBash", doShieldBash);
