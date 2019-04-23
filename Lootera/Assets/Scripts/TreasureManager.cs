@@ -43,10 +43,10 @@ public class TreasureManager : MonoBehaviour
         // Call the Spawn function after a delay of the spawnTime and then continue to call after the same amount of time.
         weaponPositions = new Vector3[weapons.Count];
         //weaponObjects = new GameObject[weapons.Length];
-        for (int i = 0; i < numberOfChests; i++)
-        {
+        //for (int i = 0; i < numberOfChests; i++)
+        //{
             Spawn();
-        }
+        //}
     }
 
     void Update()
@@ -154,13 +154,26 @@ public class TreasureManager : MonoBehaviour
 
         // Create an instance of the weapon prefab at the randomly selected spawn point's position and rotation.
         Debug.Log("index:" + weaponIndex);
-        weaponPositions[weaponIndex] = RandomNavmeshLocation(SpawnRadius);
+    
+        weaponPositions[weaponIndex] = new Vector3((float)69.26, (float)58.9, (float)137.42); //RandomNavmeshLocation(SpawnRadius);
+        //weaponObjects[weaponIndex] = Instantiate(weapons[weaponIndex], weaponPositions[weaponIndex], rot);
+        weaponObjects.Add(Instantiate(treasureChest, weaponPositions[weaponIndex], rot));
+        weaponIndex++;
+        weaponPositions[weaponIndex] = new Vector3((float)12.30844, (float)58.9, (float)164.1985); //RandomNavmeshLocation(SpawnRadius);
+        //weaponObjects[weaponIndex] = Instantiate(weapons[weaponIndex], weaponPositions[weaponIndex], rot);
+        weaponObjects.Add(Instantiate(treasureChest, weaponPositions[weaponIndex], rot));
+        weaponIndex++;
+        weaponPositions[weaponIndex] = new Vector3((float)30.13702, (float)58.9, (float)105.0167); //RandomNavmeshLocation(SpawnRadius);
+        //weaponObjects[weaponIndex] = Instantiate(weapons[weaponIndex], weaponPositions[weaponIndex], rot);
+        weaponObjects.Add(Instantiate(treasureChest, weaponPositions[weaponIndex], rot));
+        weaponIndex++;
+        weaponPositions[weaponIndex] = new Vector3((float)35.95826, (float)58.9, (float)116.9899); //RandomNavmeshLocation(SpawnRadius);
         //weaponObjects[weaponIndex] = Instantiate(weapons[weaponIndex], weaponPositions[weaponIndex], rot);
         weaponObjects.Add(Instantiate(treasureChest, weaponPositions[weaponIndex], rot));
         weaponIndex++;
     }
 
-    public Vector3 RandomNavmeshLocation(float radius)
+    /*public Vector3 RandomNavmeshLocation(float radius)
     {
         while (true)
         {
@@ -175,7 +188,7 @@ public class TreasureManager : MonoBehaviour
                 return finalPosition;
             }
         }
-    }
+    }*/
 
     /*public void SaveSerializedBackpackInv()
     {
