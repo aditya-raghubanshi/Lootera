@@ -200,7 +200,7 @@ public class Inventory : MonoBehaviour
     AbilitySlots abilities;
     bool upadteSlotter()
     {
-        if(!characterSystem() || (characterSystem() && this.getItemList().Count == 0))
+        if(!characterSystem()) //|| (characterSystem() && this.getItemList().Count == 0))
         {
             return true;
         }
