@@ -204,7 +204,7 @@ public class Inventory : MonoBehaviour
         {
             return true;
         }
-        if (characterSystem() && this.getItemList().Count==4)
+        if (characterSystem()) //&& this.getItemList().Count==4)
         {
             abilities = GetComponent<AbilitySlots>();
             List<Item> bodyItems = this.getItemList();
