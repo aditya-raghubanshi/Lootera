@@ -82,6 +82,7 @@ public class Vault : MonoBehaviour
 
     private void addBasicInventory()
     {
+        Debug.Log("adding basic");
         bodyMenu.addItemToInventory(36);
         bodyMenu.addItemToInventory(38);
         bodyMenu.addItemToInventory(39);
