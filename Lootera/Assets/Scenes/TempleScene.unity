@@ -11708,7 +11708,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 47c510ec5fd06894583c18a042ce40e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  treasureChest: {fileID: 0}
+  treasureChest: {fileID: 1000014188511100, guid: 5dcae5adf53292945adef517afe8041e,
+    type: 3}
   spawnTime: 4
   SpawnRadius: 5000
   playerInventory: {fileID: 1194072235}
