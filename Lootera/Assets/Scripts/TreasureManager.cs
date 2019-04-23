@@ -17,7 +17,6 @@ public class TreasureManager : MonoBehaviour
     [SerializeField] public float spawnTime = 4f;            // How long between each spawn.
     [SerializeField] public float SpawnRadius = 5000;
     int numberOfChests = 4;
-    static int weaponIndex = 0;
     public PlayerInventory playerInventory;
     public GameObject vaultPanel;
     public PauseManager pauseManager;
@@ -25,7 +24,6 @@ public class TreasureManager : MonoBehaviour
 
     //public static List<int> inventory = new List<int>();
 
-    protected InteractionButton interaction;
     protected GameObject player;
     //public Transform interactionTransform;
 
@@ -36,7 +34,6 @@ public class TreasureManager : MonoBehaviour
         LoadSerializedBodyInv();
         LoadSerializedBackpackInv();
 
-        interaction = FindObjectOfType<InteractionButton>();
         player = GameObject.Find("Player");
         //interactionTransform = this.transform;
 
@@ -51,20 +48,21 @@ public class TreasureManager : MonoBehaviour
 
     void Update()
     {
-        if (interaction && interaction.Pressed)
+    }
+
+    public void interactionPressed()
+    {
+        Debug.Log("INTERACTION PRESSED!");
+        for (int i = 0; i < weaponPositions.Length; i++)
         {
 
-            Debug.Log("INTERACTION PRESSED!");
-            for (int i = 0; i < weaponPositions.Length; i++)
+            Debug.Log("LOOPING....");
+            float distance = Vector3.Distance(player.transform.transform.position, weaponPositions[i]);
+            Debug.Log(distance);
+            if (distance <= 3f)
             {
-
-                Debug.Log("LOOPING....");
-                float distance = Vector3.Distance(player.transform.transform.position, weaponPositions[i]);
-                if (distance <= 3f)
-                {
-                    Interact(i);
-                    break;
-                }
+                Interact(i);
+                break;
             }
         }
     }
@@ -153,24 +151,23 @@ public class TreasureManager : MonoBehaviour
         rot.y = System.Math.Abs(360 - rot.y);
 
         // Create an instance of the weapon prefab at the randomly selected spawn point's position and rotation.
-        Debug.Log("index:" + weaponIndex);
+        //Debug.Log("index:" + weaponIndex);
     
-        weaponPositions[weaponIndex] = new Vector3((float)69.26, (float)58.9, (float)137.42); //RandomNavmeshLocation(SpawnRadius);
+        weaponPositions[0] = new Vector3((float)69.26, (float)58.9, (float)137.42); //RandomNavmeshLocation(SpawnRadius);
         //weaponObjects[weaponIndex] = Instantiate(weapons[weaponIndex], weaponPositions[weaponIndex], rot);
-        weaponObjects.Add(Instantiate(treasureChest, weaponPositions[weaponIndex], rot));
-        weaponIndex++;
-        weaponPositions[weaponIndex] = new Vector3((float)12.30844, (float)58.9, (float)164.1985); //RandomNavmeshLocation(SpawnRadius);
+        weaponObjects.Add(Instantiate(treasureChest, weaponPositions[0], rot));
+        //weaponIndex++;
+        weaponPositions[1] = new Vector3((float)12.30844, (float)58.9, (float)164.1985); //RandomNavmeshLocation(SpawnRadius);
         //weaponObjects[weaponIndex] = Instantiate(weapons[weaponIndex], weaponPositions[weaponIndex], rot);
-        weaponObjects.Add(Instantiate(treasureChest, weaponPositions[weaponIndex], rot));
-        weaponIndex++;
-        weaponPositions[weaponIndex] = new Vector3((float)30.13702, (float)58.9, (float)105.0167); //RandomNavmeshLocation(SpawnRadius);
+        weaponObjects.Add(Instantiate(treasureChest, weaponPositions[1], rot));
+
+        weaponPositions[2] = new Vector3((float)30.13702, (float)58.9, (float)105.0167); //RandomNavmeshLocation(SpawnRadius);
         //weaponObjects[weaponIndex] = Instantiate(weapons[weaponIndex], weaponPositions[weaponIndex], rot);
-        weaponObjects.Add(Instantiate(treasureChest, weaponPositions[weaponIndex], rot));
-        weaponIndex++;
-        weaponPositions[weaponIndex] = new Vector3((float)35.95826, (float)58.9, (float)116.9899); //RandomNavmeshLocation(SpawnRadius);
+        weaponObjects.Add(Instantiate(treasureChest, weaponPositions[2], rot));
+
+        weaponPositions[3] = new Vector3((float)35.95826, (float)58.9, (float)116.9899); //RandomNavmeshLocation(SpawnRadius);
         //weaponObjects[weaponIndex] = Instantiate(weapons[weaponIndex], weaponPositions[weaponIndex], rot);
-        weaponObjects.Add(Instantiate(treasureChest, weaponPositions[weaponIndex], rot));
-        weaponIndex++;
+        weaponObjects.Add(Instantiate(treasureChest, weaponPositions[3], rot));
     }
 
     /*public Vector3 RandomNavmeshLocation(float radius)

@@ -158,7 +158,7 @@ public class Inventory : MonoBehaviour
             SaveInvToFile();
             return true;
         }
-        return false;
+        return true;
     }
 
     public List<int> getIDs()
