@@ -264,6 +264,23 @@ public class TreasureManager : MonoBehaviour
         }
     }
 
+    public static void destroyAll()
+    {
+        string serializedWeaponFileName = Application.persistentDataPath + "/backpackInv.dat";
+        BinaryFormatter bf = new BinaryFormatter();
+        if (File.Exists(serializedWeaponFileName))
+        {
+            File.Delete(serializedWeaponFileName);
+        }
+
+        serializedWeaponFileName = Application.persistentDataPath + "/bodyInv.dat";
+        bf = new BinaryFormatter();
+        if (File.Exists(serializedWeaponFileName))
+        {
+            File.Delete(serializedWeaponFileName);
+        }
+    }
+
     [Serializable]
     public struct WeaponSaveData
     {

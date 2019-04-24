@@ -52,6 +52,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (health <= 0)
         {
+            TreasureManager.destroyAll();
             //Debug.Log("health 0");
             health = 0f;
             animate.SetFloat("dead", 1f);
