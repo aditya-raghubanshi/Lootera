@@ -212,10 +212,10 @@ public class Inventory : MonoBehaviour
             for (int i = 0; i < bodyItems.Count; i++)
             {
                 Debug.Log(bodyItems[i].itemID);
-                if (i == 0) { AttackButton.weaponID = bodyItems[i].itemID; }
-                else if (i == 1) { AbilitySlots.ability1 = bodyItems[i].itemID; }
-                else if (i == 2) { AbilitySlots.ability2 = bodyItems[i].itemID; }
-                else if (i == 3) { AbilitySlots.ability3 = bodyItems[i].itemID; }
+                if (bodyItems[i].itemType == ItemType.Weapon) { AttackButton.weaponID = bodyItems[i].itemID; }
+                else if (i <= 1) { AbilitySlots.ability1 = bodyItems[i].itemID; }
+                else if (i <= 2) { AbilitySlots.ability2 = bodyItems[i].itemID; }
+                else if (i <= 3) { AbilitySlots.ability3 = bodyItems[i].itemID; }
             }
             return true;
         }
@@ -676,10 +676,12 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < SlotContainer.transform.childCount; i++)
         {
+            Debug.Log("Child count:"+ SlotContainer.transform.GetChild(i).childCount);
             if (SlotContainer.transform.GetChild(i).childCount == 0)
             {
                 GameObject item = (GameObject)Instantiate(prefabItem);
                 ItemOnObject itemOnObject = item.GetComponent<ItemOnObject>();
+                Debug.Log("Adding: " + id + itemDatabase.getItemByID(id));
                 itemOnObject.item = itemDatabase.getItemByID(id);
                 if (itemOnObject.item.itemValue <= itemOnObject.item.maxStack && value <= itemOnObject.item.maxStack)
                     itemOnObject.item.itemValue = value;
@@ -777,11 +779,15 @@ public class Inventory : MonoBehaviour
 
     public void deleteAllItems()
     {
+
         for (int i = 0; i < SlotContainer.transform.childCount; i++)
         {
             if (SlotContainer.transform.GetChild(i).childCount != 0)
             {
+                Debug.Log("Destroing slot" + SlotContainer.transform.GetChild(i).childCount);
                 Destroy(SlotContainer.transform.GetChild(i).GetChild(0).gameObject);
+                SlotContainer.transform.GetChild(i).DetachChildren();
+                Debug.Log("Destroing slot after:" + SlotContainer.transform.GetChild(i).childCount);
             }
         }
     }
