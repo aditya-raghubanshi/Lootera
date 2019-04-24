@@ -8,10 +8,10 @@ public class Abilities : MonoBehaviour
     float doShieldBash;
     float doDash;
     float closeRadius = 10f;
-    float shieldBashDamage = 30f;
-    float shieldBashCost = 70f;
+    float shieldBashDamage = 50f;
+    float shieldBashCost = 60f;
     float rollCost = 20f;
-    float rollSpeed = 60f;
+    float rollSpeed = 20f;
     float damagingAuraDamage = 10f;
     float doDamagingAura = 0f;
     private PlayerHealth health;
@@ -67,7 +67,7 @@ public class Abilities : MonoBehaviour
         switch (ability1)
         {
             case 38:
-                HealingShout();
+                HealingShout(30f);
                 break;
             case 41:
                 ShieldBash();
@@ -80,29 +80,35 @@ public class Abilities : MonoBehaviour
                 DoDamagingAura();
                 break;
             case 45:
-                HealingShout();
+                HealingShout(60f);
                 break;
             case 48:
+                shieldBashDamage *= 2f;
                 ShieldBash();
                 break;
             case 46:
+                rollSpeed *= 2f;
                 Roll();
                 break;
             case 47:
                 print("Pre damaging aura");
+                damagingAuraDamage *= 2f;
                 DoDamagingAura();
                 break;
             case 52:
-                HealingShout();
+                HealingShout(120f);
                 break;
             case 55:
+                shieldBashDamage *= 4f;
                 ShieldBash();
                 break;
-            case 56:
+            case 53:
+                rollSpeed *= 4f;
                 Roll();
                 break;
-            case 57:
+            case 54:
                 print("Pre damaging aura");
+                damagingAuraDamage *= 4f;
                 DoDamagingAura();
                 break;
         }
@@ -113,7 +119,7 @@ public class Abilities : MonoBehaviour
         switch (ability2)
         {
             case 38:
-                HealingShout();
+                HealingShout(30f);
                 break;
             case 41:
                 ShieldBash();
@@ -126,29 +132,35 @@ public class Abilities : MonoBehaviour
                 DoDamagingAura();
                 break;
             case 45:
-                HealingShout();
+                HealingShout(60f);
                 break;
             case 48:
+                shieldBashDamage *= 2f;
                 ShieldBash();
                 break;
             case 46:
+                rollSpeed *= 2f;
                 Roll();
                 break;
             case 47:
                 //print("Pre damaging aura");
+                damagingAuraDamage *= 2f;
                 DoDamagingAura();
                 break;
             case 52:
-                HealingShout();
+                HealingShout(120f);
                 break;
             case 55:
+                shieldBashDamage *= 4f;
                 ShieldBash();
                 break;
-            case 56:
+            case 53:
+                rollSpeed *= 4f;
                 Roll();
                 break;
-            case 57:
+            case 54:
                 //print("Pre damaging aura");
+                damagingAuraDamage *= 4f;
                 DoDamagingAura();
                 break;
         }
@@ -159,7 +171,7 @@ public class Abilities : MonoBehaviour
         switch (ability3)
         {
             case 38:
-                HealingShout();
+                HealingShout(30f);
                 break;
             case 41:
                 ShieldBash();
@@ -172,9 +184,10 @@ public class Abilities : MonoBehaviour
                 DoDamagingAura();
                 break;
             case 45:
-                HealingShout();
+                HealingShout(60f);
                 break;
             case 48:
+                shieldBashDamage *= 2f;
                 ShieldBash();
                 break;
             case 46:
@@ -182,19 +195,22 @@ public class Abilities : MonoBehaviour
                 break;
             case 47:
                 print("Pre damaging aura");
+                damagingAuraDamage *= 2f;
                 DoDamagingAura();
                 break;
             case 52:
-                HealingShout();
+                HealingShout(120f);
                 break;
             case 55:
+                shieldBashDamage *= 4f;
                 ShieldBash();
                 break;
-            case 56:
+            case 53:
                 Roll();
                 break;
-            case 57:
+            case 54:
                 print("Pre damaging aura");
+                damagingAuraDamage *= 4f;
                 DoDamagingAura();
                 break;
         }
@@ -205,7 +221,7 @@ public class Abilities : MonoBehaviour
         yield return new WaitForSeconds(sec);
         mov.canMove = 1;
     }
-    void HealingShout()
+    void HealingShout(float heal)
     {
 
 
@@ -222,9 +238,8 @@ public class Abilities : MonoBehaviour
             mov.canMove = 0;
             StartCoroutine(MovementStop(2));
             doHealingShout = 1f;
-
-            health.Heal(30f + PlayerStats.intelligence);
-            mana.Damage(10f);
+            health.Heal(heal + PlayerStats.intelligence);
+            mana.Damage(30f);
         }
     }
 

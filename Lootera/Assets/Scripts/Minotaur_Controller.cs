@@ -16,7 +16,7 @@ public class Minotaur_Controller : MonoBehaviour
     Animator anim;
     float attackRadius;
     public float visibleRadius = 20;
-    public float enemyMaxHealth = (Level.level +2 )*100f;
+    public float enemyMaxHealth = (Level.level +2 )*101f;
     public float enemyHealth;
     private PlayerHealth health;
     public Image healthBar;
@@ -41,7 +41,7 @@ public class Minotaur_Controller : MonoBehaviour
     {
         Vector3 PlayerPosition = GameObject.Find("Player").transform.position;
         float dist = Vector3.Distance(transform.position, PlayerPosition);
-        anim.SetFloat("Hit", 0f);
+        
         // When are we walking? - when we can see him and we are not attacking;
         if (dist < visibleRadius)
         {
@@ -105,7 +105,7 @@ public class Minotaur_Controller : MonoBehaviour
         anim.SetBool("attacking", true);
 
         controller.Move(Vector3.zero);
-        Agent.SetDestination(Vector3.zero);
+        //Agent.SetDestination(Vector3.zero);
 
     }
     void Idle()
@@ -114,28 +114,43 @@ public class Minotaur_Controller : MonoBehaviour
         anim.SetInteger("condition", 0);
         anim.SetBool("attacking", false);
         controller.Move(Vector3.zero);
-        Agent.SetDestination(Vector3.zero);
+        //Agent.SetDestination(Vector3.zero);
     }
 
     public void Damage(float damage)
     {
         enemyHealth = enemyHealth - damage;
         anim.SetFloat("Hit", 1f);
-        Debug.Log("Mino damaged");
-        Debug.Log(damage);
+        StartCoroutine(BackToIdle(0.5f));
+        //Debug.Log("Mino damaged");
+        //Debug.Log(damage);
         if (enemyHealth <= 0f)
         {
 
             anim.SetBool("running", false);
             anim.SetInteger("condition", 3);
             anim.SetBool("attacking", false);
-            Destroy(gameObject);
+            anim.SetFloat("Dead", 1f);
+            StartCoroutine(MonsterDead(2));
+            
         }
     }
 
     public float getHealth()
     {
         return enemyHealth;
+    }
+
+    IEnumerator MonsterDead(int sec)
+    {
+        yield return new WaitForSeconds(sec);
+        Destroy(gameObject);
+    }
+
+    IEnumerator BackToIdle(float sec)
+    {
+        yield return new WaitForSeconds(sec);
+        anim.SetFloat("Hit", 0f);
     }
 
 }

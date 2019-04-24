@@ -22,7 +22,8 @@ public class SwordAttack : MonoBehaviour
             {
                 foreach (Dungeon_Monster_Controller skeleton in skeletons)
                 {
-                    skeleton.Damage(damage);
+                    skeleton.Damage(button.GetDamage());
+                    Debug.Log(button.GetDamage());
                 }
             }
         }
@@ -32,8 +33,9 @@ public class SwordAttack : MonoBehaviour
             {
                 foreach (Minotaur_Controller minotaur in minotaurs)
                 {   
-                        minotaur.Damage(damage);
-                    
+                        minotaur.Damage(button.GetDamage());
+                        Debug.Log(button.GetDamage());
+
                 }
             }
         }

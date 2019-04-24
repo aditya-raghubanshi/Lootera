@@ -43,7 +43,7 @@ public class Dungeon_Monster_Controller : MonoBehaviour
         float dist = Vector3.Distance(transform.position, PlayerPosition);
         //print("distance " + dist);
         // When are we walking? - when we can see him and we are not attacking;
-        anim.SetFloat("Hit", 0f);
+        //anim.SetFloat("Hit", 0f);
         if (dist<visibleRadius)
         {
             //print("Inside Visible Radius");
@@ -105,7 +105,7 @@ public class Dungeon_Monster_Controller : MonoBehaviour
         anim.SetBool("attacking", true);
         
         controller.Move(Vector3.zero);
-        Agent.SetDestination(Vector3.zero);
+        //Agent.SetDestination(Vector3.zero);
         
     }
     void Idle()
@@ -114,14 +114,15 @@ public class Dungeon_Monster_Controller : MonoBehaviour
         anim.SetInteger("condition", 0);
         anim.SetBool("attacking", false);
         controller.Move(Vector3.zero);
-        Agent.SetDestination(Vector3.zero);
+        //Agent.SetDestination(Vector3.zero);
     }
  
     public void Damage(float damage)
     {
         enemyHealth = enemyHealth - damage;
-        Debug.Log("Skeleton Damage: " + damage);
+        //Debug.Log("Skeleton Damage: " + damage);
         anim.SetFloat("Hit", 1f);
+        StartCoroutine(BackToIdle(0.5f));
         if (enemyHealth <= 0f)
         {
 
@@ -132,7 +133,8 @@ public class Dungeon_Monster_Controller : MonoBehaviour
             anim.SetBool("running", false);
             anim.SetInteger("condition", 0);
             anim.SetBool("attacking", false);
-            Destroy(gameObject);
+            anim.SetFloat("Dead", 1f);
+            StartCoroutine(MonsterDead(2));
         }
     }
 
@@ -141,6 +143,17 @@ public class Dungeon_Monster_Controller : MonoBehaviour
         return enemyHealth;
     }
 
+    IEnumerator MonsterDead(int sec)
+    {
+        yield return new WaitForSeconds(sec);
+        Destroy(gameObject);
+    }
+
+    IEnumerator BackToIdle(float sec)
+    {
+        yield return new WaitForSeconds(sec);
+        anim.SetFloat("Hit", 0f);
+    }
 
     //}
 }

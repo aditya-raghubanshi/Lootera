@@ -144,7 +144,7 @@ public class AttackButton : MonoBehaviour
     }
     public void attackfunc3()
     {
-        Debug.Log("Called 3");
+        //Debug.Log("Called 3");
         player = GameObject.Find("Player");
         animate = player.GetComponent<Animator>();
         Movement movement = player.GetComponent<Movement>();
@@ -163,7 +163,7 @@ public class AttackButton : MonoBehaviour
         pressed = false;
         movement.movSpeed = 10f;
         count = 2;
-        Debug.Log(count);
+        //Debug.Log(count);
         
     }
     IEnumerator ExecuteSecondAttack(float sec, Movement movement)
@@ -173,7 +173,7 @@ public class AttackButton : MonoBehaviour
         pressed = false;
         movement.movSpeed = 10f;
         count = 3;
-        Debug.Log(count);
+        //Debug.Log(count);
         
     }
     IEnumerator ExecuteThirdAttack(float sec, Movement movement)
@@ -183,7 +183,7 @@ public class AttackButton : MonoBehaviour
         pressed = false;
         movement.movSpeed = 10f;
         count = 1;
-        Debug.Log(count);
+        //Debug.Log(count);
         
     }
     //====================Arrow Code ====================================================
@@ -235,6 +235,24 @@ public class AttackButton : MonoBehaviour
         animate.SetInteger("Arrow", 0);
         Drawed = 0;
 
+    }
+
+    public float GetDamage()
+    {
+        if (weaponID == 36 || weaponID == 37 || weaponID == 42)
+        {
+            return (25f + PlayerStats.strength);
+        }
+        else if (weaponID == 43 || weaponID == 44 || weaponID == 49)
+        {
+            return (50f + PlayerStats.strength);
+        }
+        else if (weaponID == 50 || weaponID == 51 || weaponID == 56)
+        {
+            return (100f + PlayerStats.strength);
+        }
+        else return 0f;
+        
     }
 }
 

@@ -60,10 +60,10 @@ public class Ability1Button : MonoBehaviour
             case 55:
                 button.GetComponent<Image>().sprite = shieldBash;
                 break;
-            case 56:
+            case 53:
                 button.GetComponent<Image>().sprite = roll;
                 break;
-            case 57:
+            case 54:
                 button.GetComponent<Image>().sprite = magicCircle;
                 break;
         }

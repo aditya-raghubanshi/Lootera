@@ -11,7 +11,7 @@ public class PortalPopup : MonoBehaviour
 		//popup.SetActive(false);
 	}*/
 	public void OnTriggerEnter(Collider col){
-		Debug.Log("..................................................................................Collided portal");
+		//Debug.Log("..................................................................................Collided portal");
 		dungeonUI = GameObject.Find("Dungeon UI");
 		popup = dungeonUI.transform.Find("ExitPopup").gameObject;
 		string nameOfOther = col.gameObject.name;
@@ -34,4 +34,6 @@ public class PortalPopup : MonoBehaviour
 		yield return new WaitForSeconds(sec);
 		popup.SetActive(false);
 	}
+
+    
 }
