@@ -122,7 +122,7 @@ public class Abilities : MonoBehaviour
                 Roll();
                 break;
             case 40:
-                print("Pre damaging aura");
+                //print("Pre damaging aura");
                 DoDamagingAura();
                 break;
             case 45:
@@ -135,7 +135,7 @@ public class Abilities : MonoBehaviour
                 Roll();
                 break;
             case 47:
-                print("Pre damaging aura");
+                //print("Pre damaging aura");
                 DoDamagingAura();
                 break;
             case 52:
@@ -148,7 +148,7 @@ public class Abilities : MonoBehaviour
                 Roll();
                 break;
             case 57:
-                print("Pre damaging aura");
+                //print("Pre damaging aura");
                 DoDamagingAura();
                 break;
         }
@@ -223,7 +223,7 @@ public class Abilities : MonoBehaviour
             StartCoroutine(MovementStop(2));
             doHealingShout = 1f;
 
-            health.Heal(30f);
+            health.Heal(30f + PlayerStats.intelligence);
             mana.Damage(10f);
         }
     }
@@ -253,9 +253,16 @@ public class Abilities : MonoBehaviour
                 Dungeon_Monster_Controller monster = nearbyObject.GetComponent<Dungeon_Monster_Controller>();
                 if (monster != null)
                 {
-                    monster.Damage(shieldBashDamage);
+                    monster.Damage(shieldBashDamage + PlayerStats.strength);
 
-                    print(monster.getHealth());
+                    //print(monster.getHealth());
+                }
+                Minotaur_Controller minotor= nearbyObject.GetComponent<Minotaur_Controller>();
+                if (minotor != null)
+                {
+                    minotor.Damage(shieldBashDamage + PlayerStats.strength);
+
+                    //print(monster.getHealth());
                 }
 
             }
@@ -277,7 +284,7 @@ public class Abilities : MonoBehaviour
             {
                 
                 Vector3 movement = new Vector3(joystick.Horizontal, 0.0f, joystick.Vertical);
-                player.transform.Translate(movement * rollSpeed * Time.deltaTime, Space.World);
+                player.transform.Translate(movement * (rollSpeed + PlayerStats.dexterity) * Time.deltaTime, Space.World);
                 
             }
 
@@ -299,8 +306,15 @@ public class Abilities : MonoBehaviour
             Dungeon_Monster_Controller monster = nearbyObject.GetComponent<Dungeon_Monster_Controller>();
             if (monster != null)
             {
-                monster.Damage(damagingAuraDamage);
+                monster.Damage(damagingAuraDamage + PlayerStats.intelligence);
 
+            }
+            Minotaur_Controller minotor = nearbyObject.GetComponent<Minotaur_Controller>();
+            if (minotor != null)
+            {
+                minotor.Damage(damagingAuraDamage + PlayerStats.intelligence);
+
+                //print(monster.getHealth());
             }
 
         }

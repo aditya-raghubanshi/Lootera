@@ -41,7 +41,7 @@ public class Minotaur_Controller : MonoBehaviour
     {
         Vector3 PlayerPosition = GameObject.Find("Player").transform.position;
         float dist = Vector3.Distance(transform.position, PlayerPosition);
-
+        anim.SetFloat("Hit", 0f);
         // When are we walking? - when we can see him and we are not attacking;
         if (dist < visibleRadius)
         {
@@ -120,6 +120,7 @@ public class Minotaur_Controller : MonoBehaviour
     public void Damage(float damage)
     {
         enemyHealth = enemyHealth - damage;
+        anim.SetFloat("Hit", 1f);
         Debug.Log("Mino damaged");
         Debug.Log(damage);
         if (enemyHealth <= 0f)

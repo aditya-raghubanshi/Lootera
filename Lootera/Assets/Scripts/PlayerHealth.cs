@@ -52,7 +52,7 @@ public class PlayerHealth : MonoBehaviour
 
         if (health <= 0)
         {
-            Debug.Log("health 0");
+            //Debug.Log("health 0");
             health = 0f;
             animate.SetFloat("dead", 1f);
             mvmnt.canMove = 0;
@@ -78,5 +78,6 @@ public class PlayerHealth : MonoBehaviour
         yield return new WaitForSeconds(time);
 
         gameOver.SetActive(true);
+        SaveData.flag = 2;
     }
 }

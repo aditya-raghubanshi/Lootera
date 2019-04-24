@@ -71,7 +71,7 @@ public class CountdownScript : MonoBehaviour
     IEnumerator DelayedDeath(int time)
     {
         yield return new WaitForSeconds(time);
-        
+        SaveData.flag = 2;
         gameOver.SetActive(true);
     }
 }
