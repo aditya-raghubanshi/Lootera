@@ -6,16 +6,15 @@ using System.IO;
 
 public class Vault : MonoBehaviour
 {
-    public Inventory vaultMenu;
-    public Inventory backpackMenu;
-    public Inventory bodyMenu;
+    public GameObject vaultMenu;
+    public GameObject backpackMenu;
+    public GameObject bodyMenu;
     public GameObject vaultPanel;
 
     // Start is called before the first frame update
     void Start()
     {
-        vaultPanel.gameObject.SetActive(false);
-        
+        vaultPanel.gameObject.SetActive(false);   
     }
 
     // Update is called once per frame
@@ -25,31 +24,41 @@ public class Vault : MonoBehaviour
 
     public void openInventories()
     {
+
+        LoadSerializedBodyInv();
+        LoadSerializedVaultInv();
+        LoadSerializedBackpackInv();
+
         Debug.Log("opening inv");
         vaultPanel.gameObject.SetActive(true);
 
-        LoadSerializedBackpackInv();
-        LoadSerializedBodyInv();
-        LoadSerializedVaultInv();
+        //if (!vaultMenu) { vaultMenu = GameObject.Find("VaultMenu").GetComponent <Inventory> (); }
+        Debug.Log(vaultMenu);
+        vaultMenu.GetComponent<Inventory>().openInventory();
 
-        vaultMenu.openInventory();
-        backpackMenu.openInventory();
-        bodyMenu.openInventory();
+        //if (!backpackMenu) { backpackMenu = GameObject.Find("BackpackMenu").GetComponent<Inventory>(); }
+        Debug.Log(backpackMenu);
+        backpackMenu.GetComponent<Inventory>().openInventory();
+
+        //if (!bodyMenu) { bodyMenu = GameObject.Find("BodyMenu").GetComponent<Inventory>(); }
+        Debug.Log(bodyMenu);
+        bodyMenu.GetComponent<Inventory>().openInventory();
+        
     }
 
     public void closeInventories()
     {
-        if (bodyMenu.closeInventory()) {
+        SaveSerializedBackpackInv();
+        SaveSerializedBodyInv();
+        SaveSerializedVaultInv();
+
+        if (bodyMenu.GetComponent<Inventory>().closeInventory()) {
             vaultPanel.gameObject.SetActive(false);
             Debug.Log("closing all...");
-            SaveSerializedBackpackInv();
-            SaveSerializedBodyInv();
-            SaveSerializedVaultInv();
 
             Debug.Log("step 2...");
-            vaultMenu.closeInventory();
-            backpackMenu.closeInventory();
-
+            vaultMenu.GetComponent<Inventory>().closeInventory();
+            backpackMenu.GetComponent<Inventory>().closeInventory();
             Debug.Log("step 3...");
         }
     }
@@ -65,10 +74,10 @@ public class Vault : MonoBehaviour
             {
                 //inventory = (List<WeaponSaveData>)bf.Deserialize(fileStream);
                 List<int> inv = (List<int>)bf.Deserialize(fileStream);
-                backpackMenu.deleteAllItems();
+                backpackMenu.GetComponent<Inventory>().deleteAllItems();
                 for (int i = 0; i < inv.Count; i++)
                 {
-                    backpackMenu.addItemToInventory(inv[i]);
+                    backpackMenu.GetComponent<Inventory>().addItemToInventory(inv[i]);
                 }
             }
 
@@ -80,14 +89,14 @@ public class Vault : MonoBehaviour
         }
     }
 
-    /*private void addBasicInventory()
+    private void addBasicInventory()
     {
         Debug.Log("adding basic");
-        bodyMenu.addItemToInventory(36);
-        bodyMenu.addItemToInventory(38);
-        bodyMenu.addItemToInventory(39);
-        bodyMenu.addItemToInventory(40);
-    }*/
+        bodyMenu.GetComponent<Inventory>().addItemToInventory(37, 1);
+        bodyMenu.GetComponent<Inventory>().addItemToInventory(38, 1);
+        bodyMenu.GetComponent<Inventory>().addItemToInventory(39, 1);
+        bodyMenu.GetComponent<Inventory>().addItemToInventory(40, 1);
+    }
 
     private void LoadSerializedBodyInv()
     {
@@ -99,16 +108,17 @@ public class Vault : MonoBehaviour
             if (fileStream.Length != 0)
             {
                 //inventory = (List<WeaponSaveData>)bf.Deserialize(fileStream);
-                bodyMenu.deleteAllItems();
+                bodyMenu.GetComponent<Inventory>().deleteAllItems();
                 List<int> inv = (List<int>)bf.Deserialize(fileStream);
                 Debug.Log(inv.Count);
-                /*if(inv.Count == 0)
+                if(inv.Count == 0)
                 {
                     addBasicInventory();
-                }*/
+                }
                 for (int i = 0; i < inv.Count; i++)
                 {
-                    bodyMenu.addItemToInventory(inv[i]);
+                    Debug.Log("FileItem:" + inv[i]);
+                    bodyMenu.GetComponent<Inventory>().addItemToInventory(inv[i], 1);
                 }
             }
 
@@ -132,11 +142,11 @@ public class Vault : MonoBehaviour
             if (fileStream.Length != 0)
             {
                 //inventory = (List<WeaponSaveData>)bf.Deserialize(fileStream);
-                vaultMenu.deleteAllItems();
+                vaultMenu.GetComponent<Inventory>().deleteAllItems();
                 List<int> inv = (List<int>)bf.Deserialize(fileStream);
                 for (int i = 0; i < inv.Count; i++)
                 {
-                    vaultMenu.addItemToInventory(inv[i]);
+                    vaultMenu.GetComponent<Inventory>().addItemToInventory(inv[i]);
                 }
             }
 
@@ -167,7 +177,7 @@ public class Vault : MonoBehaviour
             File.Delete(serializedWeaponFileName);
         }
         FileStream file = File.Create(serializedWeaponFileName);
-        bf.Serialize(file, getIDs(backpackMenu));
+        bf.Serialize(file, getIDs(backpackMenu.GetComponent<Inventory>()));
         file.Close();
     }
 
@@ -180,8 +190,8 @@ public class Vault : MonoBehaviour
             File.Delete(serializedWeaponFileName);
         }
         FileStream file = File.Create(serializedWeaponFileName);
-        Debug.Log(getIDs(bodyMenu).Count);
-        bf.Serialize(file, getIDs(bodyMenu));
+        Debug.Log(getIDs(bodyMenu.GetComponent<Inventory>()).Count);
+        bf.Serialize(file, getIDs(bodyMenu.GetComponent<Inventory>()));
         file.Close();
     }
 
@@ -194,7 +204,7 @@ public class Vault : MonoBehaviour
             File.Delete(serializedWeaponFileName);
         }
         FileStream file = File.Create(serializedWeaponFileName);
-        bf.Serialize(file, getIDs(vaultMenu));
+        bf.Serialize(file, getIDs(vaultMenu.GetComponent<Inventory>()));
         file.Close();
     }
 }
