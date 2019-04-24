@@ -18,12 +18,12 @@ public class Ability3Button : MonoBehaviour
     void Start()
     {
         slots = FindObjectOfType<AbilitySlots>();
-        ability3 = slots.GetAbility3();
+        
         button = GetComponent<Button>();
     }
     void Update()
     {
-        
+        ability3 = slots.GetAbility3();
         //Debug.Log("ability3:" + ability3);
 
         switch (ability3)

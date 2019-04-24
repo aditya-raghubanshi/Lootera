@@ -5,17 +5,17 @@ using UnityEngine;
 public class SwordAttack : MonoBehaviour
 {
     // Start is called before the first frame update
-    MeshCollider mesh;
+    
     public float damage = 50f;
     Dungeon_Monster_Controller[] skeletons;
     Minotaur_Controller[] minotaurs;
-
     void OnTriggerEnter(Collider col)
     {
         AttackButton button = FindObjectOfType<AttackButton>();
         //skeleton = FindObjectOfType<Dungeon_Monster_Controller>();
         skeletons = col.gameObject.GetComponents<Dungeon_Monster_Controller>();
         minotaurs = col.gameObject.GetComponents<Minotaur_Controller>();
+
         if (skeletons != null)
         {
             if (button.pressed == true)

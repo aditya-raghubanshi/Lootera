@@ -17,14 +17,14 @@ public class Ability1Button : MonoBehaviour
     void Start()
     {
         slots = FindObjectOfType<AbilitySlots>();
-        ability1 = slots.GetAbility1();
+        
         button = GetComponent<Button>();
     }
     void Update()
     {
-        
-        //Debug.Log("ability1:" + ability1);
 
+        //Debug.Log("ability1:" + ability1);
+        ability1 = slots.GetAbility1();
         switch (ability1)
         {
             case 0:

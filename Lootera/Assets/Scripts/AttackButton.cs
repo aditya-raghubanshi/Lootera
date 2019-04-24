@@ -7,6 +7,8 @@ public class AttackButton : MonoBehaviour
 
     GameObject player;
     Animator animate;
+    public AudioSource source;
+    public AudioClip swordAtt;
     public GameObject dragonblade ;
     public GameObject Bow;
     public GameObject Viking_Sword;
@@ -121,7 +123,10 @@ public class AttackButton : MonoBehaviour
         animate.SetFloat("Attack", 1f);
         pressed = true;
         movement.movSpeed = 0f;
-        StartCoroutine(ExecuteAfterTime(1.3f, movement));
+        StartCoroutine(ExecuteAfterTime(0.5f, movement));
+        source = GetComponent<AudioSource>();
+        source.clip = swordAtt;
+        source.Play();
     }
     public void attackfunc2()
     {
@@ -133,6 +138,9 @@ public class AttackButton : MonoBehaviour
         pressed = true;
         movement.movSpeed = 0f;
         StartCoroutine(ExecuteSecondAttack(0.5f, movement));
+        source = GetComponent<AudioSource>();
+        source.clip = swordAtt;
+        source.Play();
     }
     public void attackfunc3()
     {
@@ -143,7 +151,10 @@ public class AttackButton : MonoBehaviour
         animate.SetInteger("Attack3", 3);
         pressed = true;
         movement.movSpeed = 0f;
-        StartCoroutine(ExecuteThirdAttack(0.5f, movement));
+        StartCoroutine(ExecuteThirdAttack(0.1f, movement));
+        source = GetComponent<AudioSource>();
+        source.clip = swordAtt;
+        source.Play();
     }
     IEnumerator ExecuteAfterTime(float sec, Movement movement)
     {
@@ -153,6 +164,7 @@ public class AttackButton : MonoBehaviour
         movement.movSpeed = 10f;
         count = 2;
         Debug.Log(count);
+        
     }
     IEnumerator ExecuteSecondAttack(float sec, Movement movement)
     {
@@ -162,6 +174,7 @@ public class AttackButton : MonoBehaviour
         movement.movSpeed = 10f;
         count = 3;
         Debug.Log(count);
+        
     }
     IEnumerator ExecuteThirdAttack(float sec, Movement movement)
     {
@@ -171,6 +184,7 @@ public class AttackButton : MonoBehaviour
         movement.movSpeed = 10f;
         count = 1;
         Debug.Log(count);
+        
     }
     //====================Arrow Code ====================================================
     public Camera cam;

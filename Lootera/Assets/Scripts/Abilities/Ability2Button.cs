@@ -17,16 +17,18 @@ public class Ability2Button : MonoBehaviour
     void Start()
     {
         slots = FindObjectOfType<AbilitySlots>();
-        ability2 = slots.GetAbility2();
+        
         button = GetComponent<Button>();
     }
     void Update()
     {
-        
+
         //Debug.Log("ability2:" + ability2);
+        ability2 = slots.GetAbility2();
 
         switch (ability2)
         {
+
             case 0:
                 button.GetComponent<Image>().sprite = defaultImage;
                 break;
