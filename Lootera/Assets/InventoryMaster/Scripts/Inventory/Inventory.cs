@@ -150,12 +150,11 @@ public class Inventory : MonoBehaviour
 
     public bool closeInventory()
     {
-        Debug.Log("closeInventory()...");
-        if (upadteSlotter())
+       if (upadteSlotter())
         {
+            SaveInvToFile();
             this.gameObject.SetActive(false);
             checkIfAllInventoryClosed();
-            SaveInvToFile();
             return true;
         }
         return true;
@@ -175,10 +174,12 @@ public class Inventory : MonoBehaviour
     {
         if (characterSystem())
         {
+            Debug.Log("saving body Inventory()...");
             SaveSerializedInv("/bodyInv.dat");
         }
         else if(mainInventory)
         {
+            Debug.Log("saving backpack Inventory()...");
             SaveSerializedInv("/backpackInv.dat");
         }
 
@@ -226,6 +227,7 @@ public class Inventory : MonoBehaviour
         this.gameObject.SetActive(true);
         if (InventoryOpen != null)
         {
+            Debug.Log("InventoryOpen()");
             InventoryOpen();
         }
     }
