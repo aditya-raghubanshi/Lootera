@@ -812,7 +812,7 @@ MonoBehaviour:
     itemIcon: {fileID: 21300000, guid: ea8c1dc6581654b4a9e7d6257135fbe9, type: 3}
     itemModel: {fileID: 0}
     itemValue: 1
-    itemType: 13
+    itemType: 1
     itemWeight: 0
     maxStack: 1
     indexItemInList: 999

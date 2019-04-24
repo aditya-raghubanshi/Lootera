@@ -12,10 +12,10 @@ public class TreasureManager : MonoBehaviour
     List<int> weapons = new List<int>() {36, 37, 38, 39, 40, 41, 42, 44, 47, 56};                // 36 dragonblade, 37 viking sword, 38 healing shot, 39 roll, 40 magic circle, 41 shield, 42 bow
     List<int> weaponsRare = new List<int>() {43, 44, 45, 46, 47, 48, 49, 36, 37, 52};                // rare
     List<int> weaponsLegendary = new List<int>() {50, 51, 52, 53, 54, 55, 56, 38, 48, 49};                // legendary
-    List<GameObject> weaponObjects = new List<GameObject>();                // The weapon objects spawned.
+    List<GameObject> chestObjects = new List<GameObject>();                // The weapon objects spawned.
     private Vector3[] weaponPositions;
-    [SerializeField] public float spawnTime = 4f;            // How long between each spawn.
-    [SerializeField] public float SpawnRadius = 5000;
+    //[SerializeField] public float spawnTime = 4f;            // How long between each spawn.
+    //[SerializeField] public float SpawnRadius = 5000;
     int numberOfChests = 4;
     public PlayerInventory playerInventory;
     public GameObject vaultPanel;
@@ -33,6 +33,7 @@ public class TreasureManager : MonoBehaviour
 
         LoadSerializedBodyInv();
         LoadSerializedBackpackInv();
+        populateChestObjects();
 
         player = GameObject.Find("Player");
         //interactionTransform = this.transform;
@@ -50,18 +51,32 @@ public class TreasureManager : MonoBehaviour
     {
     }
 
+    private void populateChestObjects()
+    {
+        chestObjects.Add(GameObject.Find("treasure_chest_1"));
+        chestObjects.Add(GameObject.Find("treasure_chest_2"));
+        chestObjects.Add(GameObject.Find("treasure_chest_3"));
+        chestObjects.Add(GameObject.Find("treasure_chest_4"));
+    }
+
     public void interactionPressed()
     {
         Debug.Log("INTERACTION PRESSED!");
-        for (int i = 0; i < weaponPositions.Length; i++)
+        for (int i = 0; i < chestObjects.Count; i++)
         {
 
             Debug.Log("LOOPING....");
-            float distance = Vector3.Distance(player.transform.transform.position, weaponPositions[i]);
+            
+
+            float distance = Vector3.Distance(player.transform.transform.position, chestObjects[i].transform.position);
             Debug.Log(distance);
             if (distance <= 3f)
             {
-                Interact(i);
+                
+                Interact();
+
+                Destroy(chestObjects[i]);
+                chestObjects.RemoveAt(i);
                 break;
             }
         }
@@ -123,7 +138,7 @@ public class TreasureManager : MonoBehaviour
         chestMenu.openInventory();
     }
 
-    public void Interact(int weaponIndex)
+    public void Interact()
     {
         Debug.Log("Interacting with Treausre");
         //inventory.Add(new WeaponSaveData(weapons[weaponIndex].ToString()));
@@ -136,8 +151,6 @@ public class TreasureManager : MonoBehaviour
         System.Random rnd = new System.Random();
         Gems.gems = Level.level + rnd.Next(1, 11);
 
-        Destroy(weaponObjects[weaponIndex]);
-        weaponObjects.RemoveAt(weaponIndex);
         Debug.Log("opened!!!!");
 
         //SaveSerializedWeapons();
@@ -153,21 +166,21 @@ public class TreasureManager : MonoBehaviour
         // Create an instance of the weapon prefab at the randomly selected spawn point's position and rotation.
         //Debug.Log("index:" + weaponIndex);
     
-        weaponPositions[0] = new Vector3((float)69.26, (float)58.9, (float)137.42); //RandomNavmeshLocation(SpawnRadius);
+        weaponPositions[0] = new Vector3((float)86.8, (float)58.9, (float)116.5); //RandomNavmeshLocation(SpawnRadius);
         //weaponObjects[weaponIndex] = Instantiate(weapons[weaponIndex], weaponPositions[weaponIndex], rot);
-        weaponObjects.Add(Instantiate(treasureChest, weaponPositions[0], rot));
+        //weaponObjects.Add(Instantiate((GameObject)Resources.Load("treasure_chest_closed", typeof(GameObject)), weaponPositions[0], rot));
         //weaponIndex++;
-        weaponPositions[1] = new Vector3((float)12.30844, (float)58.9, (float)164.1985); //RandomNavmeshLocation(SpawnRadius);
+        weaponPositions[1] = new Vector3((float)-0.7, (float)58.9, (float)133.6); //RandomNavmeshLocation(SpawnRadius);
         //weaponObjects[weaponIndex] = Instantiate(weapons[weaponIndex], weaponPositions[weaponIndex], rot);
-        weaponObjects.Add(Instantiate(treasureChest, weaponPositions[1], rot));
+        //weaponObjects.Add(Instantiate(treasureChest, weaponPositions[1], rot));
 
-        weaponPositions[2] = new Vector3((float)30.13702, (float)58.9, (float)105.0167); //RandomNavmeshLocation(SpawnRadius);
+        weaponPositions[2] = new Vector3((float)32.6, (float)58.9, (float)151); //RandomNavmeshLocation(SpawnRadius);
         //weaponObjects[weaponIndex] = Instantiate(weapons[weaponIndex], weaponPositions[weaponIndex], rot);
-        weaponObjects.Add(Instantiate(treasureChest, weaponPositions[2], rot));
+        //weaponObjects.Add(Instantiate(treasureChest, weaponPositions[2], rot));
 
-        weaponPositions[3] = new Vector3((float)35.95826, (float)58.9, (float)116.9899); //RandomNavmeshLocation(SpawnRadius);
+        weaponPositions[3] = new Vector3((float)-0.7, (float)58.9, (float)222.6); //RandomNavmeshLocation(SpawnRadius);
         //weaponObjects[weaponIndex] = Instantiate(weapons[weaponIndex], weaponPositions[weaponIndex], rot);
-        weaponObjects.Add(Instantiate(treasureChest, weaponPositions[3], rot));
+       // weaponObjects.Add(Instantiate(treasureChest, weaponPositions[3], rot));
     }
 
     /*public Vector3 RandomNavmeshLocation(float radius)
