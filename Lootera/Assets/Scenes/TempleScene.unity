@@ -31235,7 +31235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   movSpeed: 10
   sens: 0.2
-  rotsens: 0.08
+  rotsens: 0.6
   canMove: 1
 --- !u!54 &2033713931
 Rigidbody:
